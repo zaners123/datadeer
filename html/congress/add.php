@@ -40,7 +40,7 @@ function allTags($conn) {
 	$query = sprintf("select tag from con_problems");
 	return mysqli_query($conn,$query);
 }
-$conn = mysqli_connect("localhost","con","AJSDKRHKAJBHRKASH$#Q(\$YIkhb895uhbA%U");
+$conn = mysqli_connect("localhost","con",parse_ini_file("/var/www/php/pass.ini")["mysql_congress"]);
 mysqli_select_db($conn,"userdata");
 $query = "";
 if (isset($_GET["question"]) && isset($_GET["tag"])) {
