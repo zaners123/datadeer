@@ -20,9 +20,7 @@ $fin = array (
 if (isset($_GET["delete"]) && $_GET["delete"]==="delete my data") {
 	$doc = getDoc("finance",$_SESSION["username"],$fin);
 	foreach ($doc as $key => $value) {
-		if ($key[0] != '_') {
-			unset($doc[$key]);
-		}
+		if ($key[0] != '_') unset($doc[$key]);
 	}
 	setDoc("finance",$_SESSION["username"],$doc);
 	return;

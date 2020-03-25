@@ -1,6 +1,7 @@
 <?php
 if (!isset($_GET["id"]) || empty($_GET["id"]) || strlen($_GET["id"])==0) {
     //redirect to no id if no id
+	exit();
 }
 require "/var/www/php/header.php"
 ?>
@@ -195,7 +196,7 @@ If there are only boxes when you click, <a href="../other/settings.php">turn on 
                     updateBoard(text);
                 });
             });
-        }``
+        }
         function fetchThenUpdateBoard() {
             fetch(gameTypeLong+"Base.php?id="+gameId,{credentials: "same-origin"}).then(function (response) {
                 response.text().then(function (text) {

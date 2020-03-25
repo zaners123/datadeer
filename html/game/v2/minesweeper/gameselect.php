@@ -25,6 +25,7 @@
 	$query = sprintf("select id,round((UNIX_TIMESTAMP(NOW())-time_start)/60,2) as ago from minesweeper where mines_left!=-1 and time_end=0 and user='%s' order by id desc limit 5;",
 		mysqli_escape_string($conn,$_SESSION["username"])
 	);
+
 	$res = mysqli_query($conn, $query);
 	while ($row = mysqli_fetch_assoc($res)) {
 		echo "<li><a class='black' href='play.php?id=".$row["id"]."'>Game #".$row["id"]." - Started ".$row["ago"]." minutes ago</a> </li>";

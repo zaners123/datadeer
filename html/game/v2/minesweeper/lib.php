@@ -1,5 +1,7 @@
 <?php
 
+require "../lib.php";
+
 //standard competition sizes (changeable at any time)
 $boardSizes = [[10,10,6,"Practice"],[8,8,10,"Novice"],[16,16,42,"Intermediate"],[30,16,99,"Time Trial"],[30,30,200,"Expert"],[100,100,1400,"The Gauntlet"]];
 
@@ -11,7 +13,10 @@ class MinesweeperBoard extends GameBoard {
 //	const SHOWN_EMPTY = 'E';
 	//board could also contain number
 
+
 	//main sql variables
+
+
 	private $id;
 	public function getID() {return $this->id;}
 	private $user;
@@ -25,10 +30,15 @@ class MinesweeperBoard extends GameBoard {
 	private $time_start;
 	private $time_end;
 
+
 	//main constructors
+
+
 	public function __construct() {
 		parent::__construct("minesweeper");
 	}
+
+
 	/**
 	 * Fills variable with data from SQL at ID=$id
 	 * @param $id int ID from SQL table
@@ -186,62 +196,19 @@ class MinesweeperBoard extends GameBoard {
 		return $this->id;
 	}
 
-	public function takeInput($data) {
-		$this->respondToClick($data["x"],$data["y"]);
+	public function takeInput($input) {
+		$this->respondToClick($input["x"],$input["y"]);
 	}
 }
-
-class SudokuBoard extends GameBoard {
-
-	public function __construct()
-	{
-		parent::__construct("sudoku");
-	}
-
-	public function constructByGenerate($data) {
-		if (!isset($data["level"])) exit("json must contain level");
-		if ($data["level"]=="normal") {
-			//todo how the heck do i make a sudoku board
-		} else {
-			exit("Set level to valid level, such as normal");
-		}
-		$this->sqlInsertBoard();
-	}
-
-	public function takeInput($data) {
-		if (!isset($data["x"]) || !isset($data["y"])) exit("json must contain x and y");
-
-		$x = $data["x"];
-		$y = $data["y"];
-
-		//todo store new client sudoku board and process hints. Also, see if they have won or not (test for mismatches client side)
-
-		//update changes
-		$this->sqlUpdateBoard();
-	}
-
-	public function getSanatizedBoard() {
-		//return clientBoard
-		return $this->data["clientboard"];
-	}
-
-	public function sqlInsertBoard() {
-		//todo take $this->data and dump it right in userdata.sudoku
-	}
-
-	public function sqlUpdateBoard() {
-		//todo take $this->data and dump it in userdata.sudoku
-	}
-}
-
+/*
 abstract class GameBoard {
 	protected $data;
 	private $tableName;
-	/**
-	 * To make an allowed table:
-	 *  Put a table in userdata
-	 *  Give it an (ID int) and a (user varchar(32))
-	 */
+//	*
+//	 * To make an allowed table:
+//	 *  Put a table in userdata
+//	 *  Give it an (ID int) and a (user varchar(32))
+//
 	private $allowedTables = array("sudoku","minesweeper");
 
 	//main constructors
@@ -252,10 +219,10 @@ abstract class GameBoard {
 		$this->tableName = $tableName;
 	}
 
-	/**
-	 * Fills variable with data from SQL at ID=$id
-	 * @param $id int ID from SQL table
-	 */
+//	*
+//	 * Fills variable with data from SQL at ID=$id
+//	 * @param $id int ID from SQL table
+//
 	public function constructById($id) {
 		$conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"],"userdata");
 		$query = sprintf(
@@ -268,30 +235,30 @@ abstract class GameBoard {
 		//main data should be parsed by subclasses
 		$this->data = mysqli_fetch_assoc($result);
 	}
-	/**
-	 * Generates new board. Also, inserts it into the table.
-	 */
+//	*
+//	 * Generates new board. Also, inserts it into the table.
+//
 	public abstract function constructByGenerate($data);
 
-	/**
-	 * An ajax call will pass JSON input data to request.php, which will be fed directly here. PROCESS USER INPUT
-	 * @param $data array JSON data fed by client
-	*/
-	public abstract function takeInput($data);
+//	*
+//	 * An ajax call will pass JSON input data to request.php, which will be fed directly here. PROCESS USER INPUT
+//	 * @param $input array JSON data fed by client
+//
+	public abstract function takeInput($input);
 	//main user input
-	/**
-	 * 	Given to user so they can choose updateBoard()
-	 * @return string user representation of board
-	 */
+//	*
+//	 * 	Given to user so they can choose updateBoard()
+//	 * @return string user representation of board
+//
 	public abstract function getSanatizedBoard();
 	//main sql storage
-	/**
-	 * Takes board data and inserts it into minesweeper table. Also assigns board an ID (because of autoincrement).
-	 */
+//	*
+//	 * Takes board data and inserts it into minesweeper table. Also assigns board an ID (because of autoincrement).
+//
 	public abstract function sqlInsertBoard();
-	/**
-	 * Runs a SQL update off of given board data
-	 * @return int board ID
-	 */
+//	*
+//	 * Runs a SQL update off of given board data
+//	 * @return int board ID
+//
 	public abstract function sqlUpdateBoard();
-}
+}*/
