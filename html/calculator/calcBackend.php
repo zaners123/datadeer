@@ -36,7 +36,7 @@ if ($_GET["type"]==="c") {
 
 	//give it to ServerCalc.jar
 	//      update this on Dev with Desktop/datadeer/updateCalc.sh
-	$out = shell_exec("/var/www/WebCalc c ".escapeshellarg($query));
+	//$out = shell_exec("/var/www/WebCalc c ".escapeshellarg($query));
 
 
 

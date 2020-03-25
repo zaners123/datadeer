@@ -8,8 +8,7 @@ function getRawUnprocessed() {
 	$filename = $folder.$saveRes;
 
 	//preprocessing the image to 150x150 with white background could help it...
-	$converted = $filename."-small";
-	shell_exec("convert ".escapeshellarg($filename)." -resize 150x150 -gravity center -extent 150x150 ".$converted);
+	shell_exec("convert ".escapeshellarg($filename)." -resize 150x150 -gravity center -extent 150x150 ".$filename."-small");
 
 	return shell_exec("java -jar /var/www/dog/dog.jar /var/www/dog/net.mln ".escapeshellarg($filename)."-small");
 }
