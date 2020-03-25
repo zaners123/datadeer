@@ -1,0 +1,14 @@
+body {
+    background-color: #036c99;
+}
+body, .mainText {
+    color: #000;
+}
+a, .gold {
+    color: #e6e63c;
+}
+.gold {
+    border: 10px solid black;
+    background-color: #036c99;
+    font-size: 64px;
+}

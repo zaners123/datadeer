@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Pen",
+    "desc": "DataDeer Pen",
+    "price": 3.99,
+    "img": "pen.png"
+  },
+  {
+    "name": "Shirt",
+    "desc": "DataDeer Shirt (big logo)",
+    "price": 22.99,
+    "img": "shirtBig.jpg"
+  },
+  {
+    "name": "Shirt",
+    "desc": "DataDeer Shirt (small logo)",
+    "price": "22.99",
+    "img": "shirtSmall.jpg"
+  },
+  {
+    "name": "Hat",
+    "desc": "DataDeer Hat",
+    "price": 19.99,
+    "img": "hat.png"
+  },
+  {
+    "name": "Black Mousepad",
+    "desc": "DataDeer Black Mouse Pad",
+    "price": 14.99,
+    "img": "mouseb.png"
+  },
+  {
+    "name": "White Mousepad",
+    "desc": "DataDeer white Mouse Pad",
+    "price": 14.99,
+    "img": "mouse.png"
+  },
+  {
+    "name": "Jacket",
+    "desc": "DataDeer Jacket",
+    "price": 54.99,
+    "img": "jacket.png"
+  }
+]

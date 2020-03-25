@@ -1,0 +1,11 @@
+.back {
+    background: #caf;
+}
+.quiz {
+    margin-top: 16px;
+    font-size: 46px;
+    text-align: center;
+}
+.answers {
+    list-style-type:none;
+}

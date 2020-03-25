@@ -1,0 +1,4 @@
+/*Deer cursor*/
+body {
+    cursor: url(/cursor.cur),auto;
+}
