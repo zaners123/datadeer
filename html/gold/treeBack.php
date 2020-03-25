@@ -47,7 +47,7 @@ if ($paymentMethod->success) {
 //code for subscription
 $subscriptionResult = getGateway()->subscription()->create([
 	'paymentMethodToken' => $paymentMethod->paymentMethod->token,
-	'planId' => '3ysgmainplan'
+	'planId' => parse_ini_file("/var/www/php/pass.ini")["braintree_plan"]
 	//you can't set the ID to their username because if they (sub,un,sub) then it will use the same ID twice
 	//	CAN'T xx> 'id' => strtolower($_SESSION["username"])
 ]);

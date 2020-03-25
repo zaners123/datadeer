@@ -47,7 +47,7 @@ function isUserSubscribed($username) {
 				//var_dump($subscription);
 				//echo "\n\nendsub\n\n";
 				//return true if this subscription on this card is active
-				if ($subscription->planId === "3ysgmainplan" && $subscription->status === Braintree_Subscription::ACTIVE) {
+				if ($subscription->planId === parse_ini_file("/var/www/php/pass.ini")["braintree_plan"] && $subscription->status === Braintree_Subscription::ACTIVE) {
 					return true;
 				}
 			}
@@ -71,7 +71,7 @@ function printPlanInfo() {
 			foreach ($card->subscriptions as $subscription) {
 				//don't show cancelled subscription plans
 				if ($subscription->status === Braintree_Subscription::CANCELED) continue;
-				if ($subscription->planId !== "3ysgmainplan") continue;
+				if ($subscription->planId !== parse_ini_file("/var/www/php/pass.ini")["braintree_plan"]) continue;
 				switch ($subscription->status) {
 					case (Braintree_Subscription::ACTIVE):
 						echo "Active - currently subscribed<br>";
@@ -113,7 +113,7 @@ function cancelSubscription() {
 				//var_dump($subscription);
 				//echo "\n\nendsub\n\n";
 				//return true if this subscription on this card is active
-				if ($subscription->planId === "3ysgmainplan" && $subscription->status !== Braintree_Subscription::CANCELED) {
+				if ($subscription->planId === parse_ini_file("/var/www/php/pass.ini")["braintree_plan"] && $subscription->status !== Braintree_Subscription::CANCELED) {
 					//cancel subscription
 					$result = getGateway()->subscription()->cancel($subscription->id);
 
