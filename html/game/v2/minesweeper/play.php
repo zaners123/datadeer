@@ -46,7 +46,8 @@ if (isset($_GET["size"])) {
 } else {
 	exit("Size unknown");
 }
-$board = MinesweeperBoard::populateByGenerate($size);
+$board = new MinesweeperBoard();
+$board->populateByGenerate($size);
 $boardID = $board->getID();
 ?>
 <h1 class="center">Minesweeper (Game #<?=$boardID?>)</h1>
@@ -121,7 +122,7 @@ $boardID = $board->getID();
 	    if (board.charAt(at(x,y)) === HIDDEN_FLAG) return;
 
 
-        let url = "request.php?x=" + x + "&y=" + y + "&id=" + boardId;
+        let url = "../request.php?gametype=3&x=" + x + "&y=" + y + "&id=" + boardId;
         console.log("went to \"" + url + "\"");
         fetch(url, {credentials: "same-origin"}).then(function (response) {
             response.text().then(function (newBoard) {

@@ -17,6 +17,9 @@ abstract class GameBoard {
 	*/
 	protected $gametype;
 	protected $size;
+
+	public function __construct() {}
+
 	/**
 	 * Fills variable with data from SQL at ID=$id and user=$_SESSION["username"]
 	 * @param $id int ID from SQL table
@@ -35,6 +38,8 @@ abstract class GameBoard {
 		$this->board = $result["board"];
 		$this->gametype = $result["gametype"];
 		$this->size = $result["size"];
+		//lol this line of code is great, like haha
+		$this->id = $id;
 	}
 	/**
 	 * Generates new board. Do this by first validating the size, then setting the size, then setting everything else
@@ -87,6 +92,7 @@ abstract class GameBoard {
 	 */
 	public function sqlUpdateBoard() {
 		$conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"],"userdata");
+		if (!$this->time_end) $this->time_end="null";
 		$query = sprintf(
 			"update game set time_end=%s,board='%s' where id=%s and user='%s'",
 			mysqli_real_escape_string($conn, $this->time_end),
@@ -94,6 +100,7 @@ abstract class GameBoard {
 			mysqli_real_escape_string($conn, $this->id),
 			mysqli_real_escape_string($conn, $_SESSION["username"])
 		);
+//		var_dump($query);
 		mysqli_query($conn,$query);
 	}
 }

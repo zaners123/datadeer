@@ -1,6 +1,6 @@
 <?php
 
-require "../lib.php";
+require_once "/var/www/html/game/v2/lib.php";
 
 //standard competition sizes (changeable at any time)
 $boardSizes = [["10x10,6","Practice"],["8x8,10","Novice"],["16x16,42","Intermediate"],["30x16,99","Time Trial"],["30x30,200","Expert"],["100x100,1400","The Gauntlet"]];
@@ -14,6 +14,8 @@ class MinesweeperBoard extends GameBoard {
 
 	//main sql variables
 	public function getID() {return $this->id;}
+
+	public function __construct() {}
 
 	private $parsedSize = null;
 	/**Outputs minesweeper board size and mine count*/
@@ -37,6 +39,7 @@ class MinesweeperBoard extends GameBoard {
 	 * @param $size string should contain "width x height , mines" ex "10x10,5"
 	 */
 	public function populateByGenerate($size) {
+		$this->gametype = 3;
 		$this->size = $size;
 		if (!preg_match("/^\d+x\d+,\d+$/",$size)) exit("Bad minesweeper size");
 		$this->board = str_pad("",$this->parseSize()["width"] * $this->parseSize()["height"],self::HIDDEN_EMPTY);
@@ -86,7 +89,6 @@ class MinesweeperBoard extends GameBoard {
 				if ($coord != -1 && $this->board[$coord] == self::MINE) $numNeighborMines++;
 			}
 			$this->board[$this->at($loc[0],$loc[1])] = $numNeighborMines;
-			$this->tiles_left--;
 
 			if ($numNeighborMines==0) {
 				$initSearch = false;
@@ -104,6 +106,7 @@ class MinesweeperBoard extends GameBoard {
 	 * @return string user representation of board
 	 */
 	public function getSanatizedBoard() {
+		if ($this->time_end) return "DONE";
 		$clean = $this->board;
 		//hide where the mines are
 		$clean = str_replace(self::MINE,self::HIDDEN_EMPTY,$clean);
