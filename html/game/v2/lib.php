@@ -17,17 +17,11 @@ abstract class GameBoard {
 	*/
 	protected $gametype;
 	protected $size;
-
-
-	//main constructors
-
-
-	public function __construct() {}
 	/**
-	 * Fills variable with data from SQL at ID=$id
+	 * Fills variable with data from SQL at ID=$id and user=$_SESSION["username"]
 	 * @param $id int ID from SQL table
 	 */
-	public function constructById($id) {
+	public function populateFromID($id) {
 		$conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"],"userdata");
 		$query = sprintf(
 			"select time_start,time_end,board,gametype,size from game where id=%s and user='%s'",
@@ -41,43 +35,36 @@ abstract class GameBoard {
 		$this->board = $result["board"];
 		$this->gametype = $result["gametype"];
 		$this->size = $result["size"];
-		$this->__construct();
 	}
 	/**
-	 * Generates new board. When overriding, call at end
+	 * Generates new board. Do this by first validating the size, then setting the size, then setting everything else
+	 * make sure to call parent. SET SIZE AT START so you can use parseSize in the generate function (necessary because that's the only real use of the size function)
 	 */
-	public function constructByGenerate($size) {
+	public function populateByGenerate($size) {
+		$this->size = $size;
 		$this->sqlInsertBoard();
-		$this->__construct();
 	}
-
-
 	//main user input/output
-
-
 	/**
 	 * An ajax call will pass JSON input data to request.php, which will be fed directly here. PROCESS USER INPUT
-	 * @param $input array JSON data fed by client
+	 * main remember to call $this->sqlUpdateBoard();
+	 * main uses $_GET to pass input
 	 */
-	public function takeInput($input) {
-
-		$this->sqlUpdateBoard();
-	}
+	public abstract function takeInput();
 	/**
 	 * 	Given to user so they can choose updateBoard()
 	 * @return string user representation of board
 	 */
 	public abstract function getSanatizedBoard();
-
 	/**
 	 * Should be conditionally called in takeInput, if they won
 	 */
 	public function setGameToWon() {
-		$time_end = $_SERVER["REQUEST_TIME_FLOAT"];
+		if (!$this->time_end) {
+			$this->time_end = $_SERVER["REQUEST_TIME_FLOAT"];
+		}
 	}
-
 	//main sql storage
-
 	/**
 	 * Takes board data and inserts it into minesweeper table. Also assigns board an ID (because of autoincrement).
 	 */

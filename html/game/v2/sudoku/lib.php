@@ -1,29 +1,44 @@
 <?php
 require "../lib.php";
 /**
-	Board format is {{grid [9,1,6,4,8...]},{bitmasks where 1 equals visible...},{client[9,1,8,5...]}}
+	Board format is {{"answer" board},{"hidden" board (same as answer board but got some zeroes)},{"client" board}}
 	Iff client === grid, then call gameWon();
 
 
  */
 class SudokuBoard extends GameBoard {
 
-	public function __construct()
-	{
-		parent::__construct("sudoku");
+	public function __construct() {}
+
+	/**
+	Size passed as (length; regular grid is 3),(diff; 0 easy, 1 normal, 2 hard)
+	 */
+	public function populateByGenerate($size) {
+		$this->size = $size;
+		//testing imma just assume size is 3 and diff is really easy (im bad at sudoku)
+//		if (!isset($size["level"])) exit("json must contain level");
+		$this->board = array();
+		$this->board["answer"] = str_pad("",81,"0");
+
+		//main actually generate a board
+		$randomRow = shuffle(str_split("123456789"));
+		$firstRow = "";
+		for($x=0;$x<9;$x++) $firstRow=$firstRow.$randomRow[$x];
+		var_dump($firstRow);
+		exit("TESTING lol");
+
+
+
+
+		$this->board["hidden"] = $this->board["answer"];
+
+		//todo filter hidden
+		$this->board["client"] = $this->board["hidden"];
+		parent::populateByGenerate($size);
 	}
 
-	public function constructByGenerate($data) {
-		if (!isset($data["level"])) exit("json must contain level");
-		if ($data["level"]=="normal") {
-			//todo how the heck do i make a sudoku board
-		} else {
-			exit("Set level to valid level, such as normal");
-		}
-		$this->sqlInsertBoard();
-	}
-
-	public function takeInput($input) {
+	public function takeInput() {
+		//todo (see Minesweeper on howto get GET input haha get it)
 		//input is entire client board client[0..n]
 
 		//todo store new client sudoku board and process hints. Also, see if they have won or not (test for mismatches client side)
@@ -42,7 +57,9 @@ class SudokuBoard extends GameBoard {
 	}
 
 	public function getSanatizedBoard() {
-		//return clientBoard
-		$entire = $this->board;
+		$ret = $this->board;
+		//duh, lol
+		unset($ret["answer"]);
+		return $ret;
 	}
 }

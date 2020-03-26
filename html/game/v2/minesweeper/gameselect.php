@@ -8,7 +8,7 @@
 	<h2>Choose Game Board</h2>
 	<h2 id="err" class="red"></h2>
 	<form id="form" action="play.php" onsubmit="return verifyCustom(this);" method="get">
-		<?php foreach ($boardSizes as $size) { echo "<input type=\"submit\" name=\"boardSize\" value=\"$size[0]x$size[1], $size[2] mines\"><br>";}?>
+		<?php foreach ($boardSizes as $size) { echo "<a href='play.php?size=\"$size[0]\"'><button>$size[0] mines</button></br>";}?>
 		<input type="button" value="custom" onclick="showCustom()"><br>
 		<div id="customSettings" style="visibility: hidden">
 			<label>Width: <input type="number" min="1" max="100" value="8" name="width"></label><br>
@@ -22,7 +22,7 @@
 	<ul><?php
 	$conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"],"userdata");
 
-	$query = sprintf("select id,round((UNIX_TIMESTAMP(NOW())-time_start)/60,2) as ago from minesweeper where mines_left!=-1 and time_end=0 and user='%s' order by id desc limit 5;",
+	$query = sprintf("select id,round((UNIX_TIMESTAMP(NOW())-time_start)/60,2) as ago from game where time_end=0 and user='%s' order by id desc limit 5;",
 		mysqli_escape_string($conn,$_SESSION["username"])
 	);
 
@@ -35,9 +35,9 @@
 <div class="rightHalf">
     <h2>Leaderboard</h2>
 	<?php foreach ($boardSizes as $size) {
-		echo "<h3>$size[3]: $size[0]x$size[1], $size[2] mines</h3>";
-		$query = sprintf("select user,time_end-time_start as sec from minesweeper where time_start < time_end and width=%s and height=%s and mines=%s order by sec asc limit 6;",
-			$size[0],$size[1],$size[2]
+		echo "<h3>$size[1]: $size[0] mines</h3>";
+		$query = sprintf("select user,time_end-time_start as sec from game where time_start < time_end and size=%s order by sec limit 6;",
+			$size[0]
 		);
 		$res = mysqli_query($conn, $query);
 		echo "<ol>";

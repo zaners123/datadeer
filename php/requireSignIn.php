@@ -18,7 +18,6 @@ if (isset($readOnlyDisabled) && isset($_SESSION["readonly"])) {
 	http_response_code(403);
 	header("Location: /err?e=403");
 	die("NO GUEST");
-	return;
 }
 
 //Checks if the session username is not set, empty, or has 0 length.
@@ -28,12 +27,10 @@ if (
 		||
 	//username not alphanumerics
 	!preg_match("/^\w+$/",$_SESSION["username"])
-
 ) {
     //Redirects you to index
     http_response_code(401);
     header("Location: /");
     //DOESN'T LOAD THE REST OF THE PAGE; THIS IS VITAL FOR HIDING CHAT, UI, ETC.
     die("DENIED - SIGN IN");
-    return;
 }

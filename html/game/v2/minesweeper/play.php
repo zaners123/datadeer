@@ -38,29 +38,15 @@ Game State:
 </style>
 <?php
 require "/var/www/php/bodyTop.php";
-//set specified board
-if (!preg_match("/^(\d+)x(\d+), (\d+) mines$/",$_GET["boardSize"],$boardSize)) {
-	if (isset($_GET["width"]) && isset($_GET["height"]) && isset($_GET["mines"])) {
-		//set custom board
-		$width = filter_var($_GET["width"],FILTER_VALIDATE_INT);
-		$height = filter_var($_GET["height"],FILTER_VALIDATE_INT);
-		$mines = filter_var($_GET["mines"],FILTER_VALIDATE_INT);
-	} else {
-		exit("Invalid Input");
-	}
-} else {
-$width = $boardSize[1];
-$height = $boardSize[2];
-$mines = $boardSize[3];
-}
-
-//check dimensions
-if ($mines+1 >= $width * $height) exit("Too many mines");
-if ($width<1 || $width > 100 || $height<1 || $height > 100) exit("Bad size");
-
 require "lib.php";
-$board = new MinesweeperBoard();
-$board -> constructByGenerate(array("width"=>$width,"height"=>$height,"mines"=>$mines));
+if (isset($_GET["size"])) {
+	$size = $_GET["size"];
+} else if (isset($_GET["width"]) && isset($_GET["height"])&& isset($_GET["mines"])) {
+	$size = $_GET["width"]."x".$_GET["height"].",".$_GET["mines"];
+} else {
+	exit("Size unknown");
+}
+$board = MinesweeperBoard::populateByGenerate($size);
 $boardID = $board->getID();
 ?>
 <h1 class="center">Minesweeper (Game #<?=$boardID?>)</h1>
@@ -68,12 +54,12 @@ $boardID = $board->getID();
 <div id="boardHolder">
 	<table id="boardViewer">
 		<tbody>
-		<?php for ($y=0;$y<$height;$y++) {
+		<?php for ($y=0;$y<$board->parseSize()["height"];$y++) {
 			echo "<tr>";
-			for ($x=0;$x<$width;$x++) {
+			for ($x=0;$x<$board->parseSize()["width"];$x++) {
 //				echo "<td class='cell' onmousedown='moused($x,$y)' >?</td>";
 //				echo "<td class='cell'>?</td>";
-				echo "<td class='cell' oncontextmenu='toggleFlag($x,$y);return false;' onclick='sendLoc($x,$y)'>?</td>";
+				echo "<td class='cell' oncontextmenu='toggleFlag($x,$y );return false;' onclick='sendLoc($x,$y )'>?</td>";
 			}
 			echo "</tr>";
 		}?>
@@ -86,9 +72,9 @@ $boardID = $board->getID();
     let stats = document.getElementById("stats");
 
     let boardId = <?=$boardID?>;
-    let width = <?=$width?>;
-    let height = <?=$height?>;
-    let mines = <?=$mines?>;
+    let width = <?=$board->parseSize()["width"]?>;
+    let height = <?=$board->parseSize()["height"]?>;
+    let mines = <?=$board->parseSize()["mines"]?>;
 
     let covered = width*height;
 

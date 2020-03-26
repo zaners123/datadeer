@@ -1,6 +1,5 @@
 <?php
 
-
 require "../php/httpHeader.php";
 
 session_start();
@@ -10,10 +9,9 @@ if (!isset($_SESSION["username"])) {
 	require "../php/isRemembered.php";
 }
 
-//LOAD THE WELCOME PAGE
+//main LOAD THE WELCOME PAGE
 if (isset($_SESSION["username"])) {
-
-require "../php/headerNoSignin.php"; ?>
+	require "../php/header.php"; ?>
 	<title id="title">Welcome Back, <?php echo $_SESSION["username"]?></title>
 	<style>
 		tr{
@@ -42,20 +40,19 @@ require "../php/headerNoSignin.php"; ?>
 
 <?php require "../php/block/directoryLong.php";?>
 <?php require "../php/footer.php"; ?>
-<?php }
+<?php
 
-//load the signin/signup page
-else {
+} else {
 
-	//LOAD THE SIGN IN PAGE
-	require "../php/headerNoSignin.php"; ?>
-	<title>Data Deer</title>
+//LOAD THE SIGN IN PAGE
+require "../php/headerNoSignin.php"; ?>
+<title>Data Deer</title>
 </head>
 <body style="text-align: left">
 <img alt="DataDeer.net" class="deer" src="/datadeernet.png">
 <div class="hits">
 	<h4 style="line-height: 125%">
-		More than 100 users!<br>
+		More than 200 users!<br>
 
 		<?php
 		require_once "/var/www/php/couch.php";

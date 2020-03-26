@@ -6,19 +6,23 @@ header('Content-type: text/plain');
 
 $id = filter_input(INPUT_GET,"id",FILTER_VALIDATE_INT);
 $gametype = filter_input(INPUT_GET,"gametype",FILTER_VALIDATE_INT);
-if (!$id || $gametype) exit("Give board ID");
+if (!$id || !$gametype) exit("Give board ID and gametype");
 
 require "lib.php";
 //todo choose board based off of gameType
-$o = new MinesweeperBoard();
-$o->constructById($id);
-
-$x = filter_input(INPUT_GET,"x",FILTER_VALIDATE_INT);
-$y = filter_input(INPUT_GET,"y",FILTER_VALIDATE_INT);
-if ($x && $y) {
-	$o->respondToClick($x,$y);
-} else {
-	echo "ERR X or Y format";
+switch ($gametype) {
+	case 3://mines
+		$game = new MinesweeperBoard();
+		$game->populateFromID($id);
+		break;
+	case 4://sudoku
+		$game = new SudokuBoard();
+		$game->populateFromID($id);
+		break;
+	default:
+		exit("Unknown gametype");
+		break;
 }
+$game->takeInput();
 
-echo $o->getSanatizedBoard();
+echo $game->getSanatizedBoard();
