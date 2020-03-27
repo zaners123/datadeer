@@ -33,7 +33,6 @@
 
 //main inform user of limit usage
 require_once "/var/www/php/subdata.php";
-
 $doc = getDoc("share",$_SESSION["username"],$blankDefault);
 
 $spaceUsed = 0;

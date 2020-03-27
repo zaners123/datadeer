@@ -3,9 +3,8 @@ $readOnlyDisabled = true;
 require "/var/www/php/requireSignIn.php";
 require "/var/www/php/couch.php";
 require_once "/var/www/php/subdata.php";
-require "/var/www/php/lib.php";
 
-//TODO only allow files if space left in {for-loop over $doc} < 50MB
+require "/var/www/php/lib.php";
 
 /**
 main input $_FILES["userfile"] for file data, extention, size

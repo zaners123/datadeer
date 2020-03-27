@@ -1,17 +1,3 @@
-<?php
-/*
-
-A server-side minesweeper (so leaderboards are valid)
-(Couldn't be client-side because they could cheat to see the entire board)
-
-Game State:
-    Generates valid board, sends client stripped version (where mines are unknown)
-        Client chooses coordinates (through AJAX CALL), server responds with new game state (new board info)
-            Flags are client-side
-            If mine hit, client dies
-
-*/
-?>
 <?php require "/var/www/php/header.php"; ?>
 <title>Minesweeper</title>
 <style>
@@ -39,16 +25,23 @@ Game State:
 <?php
 require "/var/www/php/bodyTop.php";
 require "lib.php";
-if (isset($_GET["size"])) {
-	$size = $_GET["size"];
-} else if (isset($_GET["width"]) && isset($_GET["height"])&& isset($_GET["mines"])) {
-	$size = $_GET["width"]."x".$_GET["height"].",".$_GET["mines"];
+if (isset($_GET["id"])) {
+	$board = new MinesweeperBoard();
+	$id = filter_input(INPUT_GET,"id",FILTER_VALIDATE_INT);
+	$boardID = $id;
 } else {
-	exit("Size unknown");
-}
-$board = MinesweeperBoard::populateByGenerate($size);
-$boardID = $board->getID();
-?>
+	if (isset($_GET["size"])) {
+		$size = $_GET["size"];
+	} else if (isset($_GET["width"]) && isset($_GET["height"])&& isset($_GET["mines"])) {
+		$size = $_GET["width"]."x".$_GET["height"].",".$_GET["mines"];
+	} else {
+		exit("Size unknown");
+	}
+	$board = new MinesweeperBoard();
+
+	$board->populateByGenerate($size);
+	$boardID = $board->getID();
+} ?>
 <h1 class="center">Minesweeper (Game #<?=$boardID?>)</h1>
 <div id="stats"></div>
 <div id="boardHolder">
@@ -90,20 +83,6 @@ $boardID = $board->getID();
         return x*width+y;
     }
 
-    /*function moused(e,x,y) {
-        console.log("event "+x+","+y+","+e.which);
-    }
-
-    function addEvents() {
-        for (let y=0;y<height;y++) {
-            for (let x=0;x<width;x++) {
-                boardViewer.children[0].children[y].children[x].onmousedown = function(e) {
-                    moused(e,x,y);
-                };
-            }
-        }
-    }*/
-
     function toggleFlag(x, y) {
         // console.log("toggle"+x+","+y);
         let i = at(x,y);
@@ -119,17 +98,15 @@ $boardID = $board->getID();
     function sendLoc(x, y) {
         //if its a flag, dont
 	    if (board.charAt(at(x,y)) === HIDDEN_FLAG) return;
-
-
-        let url = "request.php?x=" + x + "&y=" + y + "&id=" + boardId;
+        let url = "../request.php?gametype=3&x=" + x + "&y=" + y + "&id=" + boardId;
         console.log("went to \"" + url + "\"");
         fetch(url, {credentials: "same-origin"}).then(function (response) {
             response.text().then(function (newBoard) {
                 console.log("Got back \"" + newBoard + "\"");
                 if (newBoard === "DEAD") {
-                    boardHolder.innerHTML = "BOOM you died<br><a href='.'>Go Back</a>";
+                    boardHolder.innerHTML = "BOOM you died<br><a href='..'>Go Back</a>";
                 } else if (newBoard.startsWith("DONE")) {
-                    boardHolder.innerHTML = "Won!<br>Time: " + newBoard.substr(4) + " seconds<br><br><a href='.'>Go Back</a>";
+                    boardHolder.innerHTML = "Won!<br>Time: " + newBoard.substr(4) + " seconds<br><br><a href='..'>Go Back</a>";
                     stats.innerHTML = "";
                 } else {
                     //normal routine of updating board
@@ -148,9 +125,6 @@ $boardID = $board->getID();
     function set(i,val) {
         let from = board.charAt(i);
         if (val >= '0' && val <= '9') covered--;
-
-
-        // console.log("setting "+board.charAt(i)+" to "+val);
         board = board.substr(0,i)+val+board.substr(i+1);
         let n = boardViewer.children[0].children[i%width].children[Math.floor(i/width)];
         n.innerHTML = val;

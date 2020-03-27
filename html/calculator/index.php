@@ -1,6 +1,7 @@
 <?php require "/var/www/php/header.php"; ?>
 	<title>Calculator</title>
 <?php require "/var/www/php/bodyTop.php"; ?>
+<?php exit("DISABLED");?>
 
 <div style="text-align: center">
 <h1>

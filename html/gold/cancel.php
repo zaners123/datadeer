@@ -3,7 +3,7 @@
 <?php require "/var/www/php/bodyTop.php" ?>
 <?php
 
-require_once "subdata.php";
+require_once "/var/www/php/subdata.php";
 
 
 if (isset($_POST["yes"])

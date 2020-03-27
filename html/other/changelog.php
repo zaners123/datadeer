@@ -8,7 +8,9 @@
 	<br>
     Changes:
     <ul>
-	    <li>2/18/19 - Minecraft server is now much faster thanks to <a href="https://papermc.io">papermc.io</a></li>
+	    <li>3/26/20 - The site is now all on Github, but in a sustainable way!</li>
+	    <li>3/25/20 - Working on adding Connect and Sudoku to the site, and cleaned the code a TON so I can put it on github</li>
+	    <li>2/18/20 - Minecraft server is now much faster thanks to <a href="https://papermc.io">papermc.io</a></li>
 	    <li>2/17/20 - <a href="/dognet">DogNet</a> made, where you give it an image and it will tell you if it's a dog or not!</li>
 	    <li>2/10/20 - Minesweeper was added, also with a timed leader board, and many board sizes!</li>
 	    <li>12/16/19 - This changelog is way out of date. Settings has an OwO setting as of like a month ago. Also this site has like at least 20 secret stuffs and links.</li>

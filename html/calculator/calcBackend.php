@@ -1,7 +1,7 @@
 <?php
 
 require "/var/www/php/requireSignIn.php";
-
+exit("DISABLED");
 
 
 //type and problem need to be set

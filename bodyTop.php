@@ -6,18 +6,18 @@
 <!--		<li><a href="/"><img width="40%" src="/prateek.jpg"></a></li>-->
 		<li><a href="/">Home</a></li>
 		<?php
-//		if (isset($_SESSION) && isset($_SESSION["username"])) {
-		//require_once "/var/www/php/subdata.php";
-//			if (isSubscribed()) {
+		if (isset($_SESSION) && isset($_SESSION["username"])) {
+			require_once "/var/www/php/subdata.php";
+			if (isSubscribed()) {
 		?>
-		<!--<li>
+		<li>
 			<a href="/golduser">Subscriber <span class="arrow">▼</span></a>
 			<ul class="sub-menu">
 				<li><a href="/golduser">Subscription Menu</a></li>
 				<li><a href="/share">Share Files</a></li>
 			</ul>
-		</li>-->
-<?php //}} ?>
+		</li>
+		<?php }} ?>
 		<li class="onlyOnBig">
 			<a href="/chats/pchat">New <span class="arrow">▼</span></a>
 			<ul class="sub-menu">

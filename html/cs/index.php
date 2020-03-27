@@ -1,33 +1,11 @@
 <?php
 require "/var/www/php/startSession.php";
+exit("DISABLED"); ?>
 //main default to using guest account, so people don't have to sign in
 if (!isset($_SESSION["username"])) {
 	$_SESSION["username"] = "guest";
 }
 
-
-
-/*
-To set up SQL:
-
-Run the following commands to set up the SQL database:
-	create database fbla;
-	create table students (
-		admin varchar(32) not null,
-		id bigint not null auto_increment,
-		firstname varchar(64) not null,
-		lastname varchar(64) not null,
-		grade int not null,
-		primary key (id)
-	);
-	grant select on fbla.students to 'website'@'localhost';
-	grant insert on fbla.students to 'website'@'localhost';
-	grant delete on fbla.students to 'website'@'localhost';
-
-
-
-
-*/
 if (isset($_POST["adduser"])) {
 	if (!isset($_POST["firstname"]) || !isset($_POST["lastname"]) || !isset($_POST["grade"])) {
 		echo "ERR USER INPUT";exit;

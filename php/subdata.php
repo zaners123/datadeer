@@ -3,16 +3,16 @@
 
  */
 
-require_once 'braintree-php-3.39.0/lib/Braintree.php';
+//require_once 'braintree-php-3.39.0/lib/Braintree.php';
 
-function getGateway() {
+/*function getGateway() {
 	return new Braintree_Gateway([
 		'environment' => 'sandbox',
 		'merchantId' => parse_ini_file("/var/www/php/pass.ini")["braintree_merchantid"],
 		'publicKey'  => parse_ini_file("/var/www/php/pass.ini")["braintree_publickey"],
 		'privateKey' => parse_ini_file("/var/www/php/pass.ini")["braintree_privatekey"]
 	]);
-}
+}*/
 function isSubscribed() {
 	//starts session (thus reading session variables, etc)
 	if (session_status() !== PHP_SESSION_ACTIVE || !isset($_SESSION["username"])) {
@@ -21,8 +21,7 @@ function isSubscribed() {
 	if (isset($_SESSION["subscribe"])) {
 		return $_SESSION["subscribe"]==="true";
 	}
-	$isSubscribed = generateSubscriptionInSession();
-	return $isSubscribed;
+	return generateSubscriptionInSession();
 }
 function generateSubscriptionInSession() {
 	$isSubscribed = isUserSubscribed($_SESSION["username"]);
@@ -33,9 +32,14 @@ function isUserSubscribed($username) {
 	$username = strtolower($username);
 	//TODO remove after payment stuffs
 //	if ($username==="deer") return false;
+
+
+	//Your name could be here too if you make good code on this site (assuming you're reading this)
 	if ($username==="deer" || $username==="danielbacklund" || $username=="xlunah") return true;
+
+
 	//find a subscription plan with their user ID
-	try {
+	/*try {
 		//main get the user with this ID (their BrainTree ID is their DataDeer username)
 		$userInfo = getGateway()->customer()->find($username);
 		//get all their cards
@@ -55,9 +59,9 @@ function isUserSubscribed($username) {
 	} catch (\Braintree\Exception\NotFound $notFound) {
 		error_log("isUserSubscribed user is not found so they aren't subscribed");
 	}
-	return false;
+	return false;*/
 }
-function printPlanInfo() {
+/*function printPlanInfo() {
 	$username = strtolower($_SESSION["username"]);
 	//find a subscription plan with their user ID
 	try {
@@ -130,9 +134,9 @@ function cancelSubscription() {
 	}
 	return false;
 }
-/**Makes a customer
- @param username - The string username of the customer
- @return string - if empty, no errors. If non-empty, it contains the error.*/
+//Makes a customer
+// @param username - The string username of the customer
+// @return string - if empty, no errors. If non-empty, it contains the error.
 function makeCustomer($username) {
 	//should make customerId
 	$customerId = getGateway()->customer()->create([
@@ -164,14 +168,16 @@ function makeCustomer($username) {
 }
 
 // make clientToken
-/*$clientToken = $gateway->clientToken()->generate([
-	"customerId" => strtolower($_SESSION["username"])
-]);
-echo "Client Token".json_encode($clientToken);*/
+//$clientToken = $gateway->clientToken()->generate([
+//	"customerId" => strtolower($_SESSION["username"])
+//]);
+//echo "Client Token".json_encode($clientToken);
 
 //code for one time transaction
-/*$result = $gateway->transaction()->sale([
-	'amount' => '100.00',
-	'paymentMethodNonce' => $_POST["paymentMethodNonce"],
-	'options' => [ 'submitForSettlement' => true ]
-]);*/
+//$result = $gateway->transaction()->sale([
+//	'amount' => '100.00',
+//	'paymentMethodNonce' => $_POST["paymentMethodNonce"],
+//	'options' => [ 'submitForSettlement' => true ]
+//]);
+
+*/

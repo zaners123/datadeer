@@ -1,5 +1,5 @@
 <?php
-require_once "/var/www/html/gold/subdata.php";
+require_once "/var/www/php/subdata.php";
 require "requireSignIn.php";
 //maybe call isUserSubscribed because it is slightly more accurate than isSubscribed
 if (!isSubscribed()) {

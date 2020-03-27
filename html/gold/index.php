@@ -66,7 +66,8 @@
 	<div style="margin-top: 32px" class="gold">DataDeer Gold</div>
 
 	<?php
-	require_once "/var/www/html/gold/subdata.php";
+	require_once "/var/www/php/subdata.php";
+
 	if (isSubscribed()) {?>
 	<br>
 	<div style="font-size:120%;color: #FFF;padding:64px;background-color: #005925;">

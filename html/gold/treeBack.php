@@ -1,7 +1,7 @@
 <?php
 require "/var/www/php/requireSignIn.php";
 
-require "subdata.php";
+require_once "/var/www/php/subdata.php";
 require_once 'braintree-php-3.39.0/lib/Braintree.php';
 
 /*main list of keys/tokens you have or can generate

@@ -8,7 +8,9 @@ $id = filter_input(INPUT_GET,"id",FILTER_VALIDATE_INT);
 $gametype = filter_input(INPUT_GET,"gametype",FILTER_VALIDATE_INT);
 if (!$id || !$gametype) exit("Give board ID and gametype");
 
-require "lib.php";
+require_once "lib.php";
+require_once "minesweeper/lib.php";
+require_once "sudoku/lib.php";
 //todo choose board based off of gameType
 switch ($gametype) {
 	case 3://mines

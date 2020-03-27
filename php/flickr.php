@@ -6,19 +6,6 @@ function getLicenceList() {
 	));
 }
 
-function downloadGET($url) {
-	$curl = curl_init();
-	//dont directly pass URL unless you trust the server
-	curl_setopt($curl, CURLOPT_URL, $url);
-	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
-	//dont do this unless you trust the server (could make u DDOSSED)
-	curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
-	$ret = curl_exec($curl);
-	curl_close($curl);
-	return $ret;
-}
-
 function getBestVideoFromPhotoID($photoID) {
 	$sizes = getSizes($photoID);
 //	var_dump($sizes);
