@@ -60,10 +60,13 @@ class MinesweeperBoard extends GameBoard {
 	 * @param $input array x and y clicked at
 	 */
 	function takeInput() {
+		if (!$this->isActive()) return;
 		$x = filter_input(INPUT_GET,"x",FILTER_VALIDATE_INT);
 		$y = filter_input(INPUT_GET,"y",FILTER_VALIDATE_INT);
 
 		if ($this->board[$this->at($x,$y)] == self::MINE) {
+			//clicked a mine, boom!
+			$this->setGameToLost();
 			$this->sqlUpdateBoard();
 			return;
 		} else if ($this->board[$this->at($x,$y)] != self::HIDDEN_EMPTY) {
@@ -106,7 +109,8 @@ class MinesweeperBoard extends GameBoard {
 	 * @return string user representation of board
 	 */
 	public function getSanatizedBoard() {
-		if ($this->time_end) return "DONE";
+		if ($this->isWon()) return "DONE";
+		if ($this->isLost()) return "DEAD";
 		$clean = $this->board;
 		//hide where the mines are
 		$clean = str_replace(self::MINE,self::HIDDEN_EMPTY,$clean);

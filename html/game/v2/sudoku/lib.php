@@ -29,9 +29,6 @@ class SudokuBoard extends GameBoard {
 		var_dump($firstRow);
 		exit("TESTING lol");
 
-
-
-
 		$this->board["hidden"] = $this->board["answer"];
 
 		//todo filter hidden

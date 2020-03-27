@@ -25,9 +25,11 @@ abstract class GameBoard {
 	 * @param $id int ID from SQL table
 	 */
 	public function populateFromID($id) {
+		exit("TODO");//TODO
+		//select * from game join game_turn using (id) where turn=1;
 		$conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"],"userdata");
 		$query = sprintf(
-			"select time_start,time_end,board,gametype,size from game where id=%s and user='%s'",
+			"select time_start,time_end,board,gametype,size from game join game_turn using (id) where id=%s and user='%s' and game_turn=1;",
 			mysqli_real_escape_string($conn, $id),
 			mysqli_real_escape_string($conn, $_SESSION["username"])
 		);
@@ -61,6 +63,10 @@ abstract class GameBoard {
 	 * @return string user representation of board
 	 */
 	public abstract function getSanatizedBoard();
+
+
+	const LOST = -1;
+	const ACTIVE = 0;
 	/**
 	 * Should be conditionally called in takeInput, if they won
 	 */
@@ -69,11 +75,24 @@ abstract class GameBoard {
 			$this->time_end = $_SERVER["REQUEST_TIME_FLOAT"];
 		}
 	}
+	public function setGameToLost() {
+		$this->time_end=-1;
+	}
+	public function isWon() {
+		return (!$this->isLost() && !$this->isActive());
+	}
+	public function isLost() {
+		return $this->time_end==self::LOST;
+	}
+	public function isActive() {
+		return $this->time_end==self::ACTIVE;
+	}
 	//main sql storage
 	/**
 	 * Takes board data and inserts it into minesweeper table. Also assigns board an ID (because of autoincrement).
 	 */
 	public function sqlInsertBoard() {
+		exit("TODO");//select * from game join game_turn using (id) where turn=1;
 		$conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"],"userdata");
 		$query = sprintf(
 			"insert into game(user,time_start,board,gametype,size) values ('%s',%s,'%s',%s,'%s');",
@@ -91,8 +110,9 @@ abstract class GameBoard {
 	 * Runs a SQL update off of given board data
 	 */
 	public function sqlUpdateBoard() {
+		exit("TODO");//select * from game join game_turn using (id) where turn=1;
 		$conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"],"userdata");
-		if (!$this->time_end) $this->time_end="null";
+		if (!$this->time_end) $this->time_end=0;
 		$query = sprintf(
 			"update game set time_end=%s,board='%s' where id=%s and user='%s'",
 			mysqli_real_escape_string($conn, $this->time_end),

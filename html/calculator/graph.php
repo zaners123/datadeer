@@ -1,6 +1,8 @@
 <?php require "/var/www/php/header.php"; ?>
 <title>Graphing Calculator</title>
 <?php require "/var/www/php/bodyTop.php"; ?>
+	<?php exit("DISABLED");?>
+
 <div style="text-align: center">
 <h1>Graphing Calculator&emsp;(<a href="index.php">Switch to Calculator</a>)
 
