@@ -22,7 +22,7 @@
 	<ul><?php
 	$conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"],"userdata");
 
-	$query = sprintf("select id,round((UNIX_TIMESTAMP(NOW())-time_start)/60,2) as ago from game where time_end=0 and user='%s' order by id desc limit 5;",
+	$query = sprintf("select id,round((UNIX_TIMESTAMP(NOW())-time_start)/60,2) as ago from game join game_turn using (id) where time_end=0 and user='%s' and gametype=3 order by id desc limit 5;",
 		mysqli_escape_string($conn,$_SESSION["username"])
 	);
 
@@ -36,7 +36,7 @@
     <h2>Leaderboard</h2>
 	<?php foreach ($boardSizes as $size) {
 		echo "<h3>$size[1]: $size[0] mines</h3>";
-		$query = sprintf("select user,time_end-time_start as sec from game where time_start < time_end and size=%s order by sec limit 6;",
+		$query = sprintf("select user,time_end-time_start as sec from game join game_turn using (id) where time_start < time_end and size=%s and gametype=3 order by sec limit 6;",
 			$size[0]
 		);
 		$res = mysqli_query($conn, $query);
