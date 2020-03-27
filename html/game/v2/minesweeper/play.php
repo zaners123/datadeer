@@ -10,16 +10,16 @@
 		height:64px;
 		font-size: 48px;
 	}
-	.board0 {background: #fff;color: #fff;}
-	.board1 {background: #fff;color: #11f;}
-	.board2 {background: #fff;color: #0f0;}
+	.boardBase {background: #fff;color: #fff;}
+	.boardCurMain {background: #fff;color: #11f;}
+	.boardCurFaint {background: #fff;color: #0f0;}
 	.board3 {background: #fff;color: #f00;}
 	.board4 {background: #fff;color: #009;}
 	.board5 {background: #fff;color: #800;}
 	.board6 {background: #fff;color: #0ff;}
 	.board7 {background: #fff;color: #80f;}
 	.board8 {background: #fff;color: #0ff;}
-	.boarde {background: #333;color: #333;}
+	.boardErr {background: #333;color: #333;}
 	.boardf {background: #66f;color: #f00;}
 </style>
 <?php
@@ -52,7 +52,7 @@ if (isset($_GET["id"])) {
 			for ($x=0;$x<$board->parseSize()["width"];$x++) {
 //				echo "<td class='cell' onmousedown='moused($x,$y)' >?</td>";
 //				echo "<td class='cell'>?</td>";
-				echo "<td class='cell' oncontextmenu='toggleFlag($x,$y );return false;' onclick='sendLoc($x,$y )'>?</td>";
+				echo "<td class='cell' oncontextmenu='toggleFlag($x,$y );return false;' onclick='sendBoard($x,$y )'>?</td>";
 			}
 			echo "</tr>";
 		}?>
@@ -71,7 +71,7 @@ if (isset($_GET["id"])) {
 
     let covered = width*height;
 
-    const HIDDEN_EMPTY = '<?=MinesweeperBoard::HIDDEN_EMPTY?>';
+const HIDDEN_EMPTY = '<?=MinesweeperBoard::HIDDEN_EMPTY?>';
     const MINE =  '<?=MinesweeperBoard::MINE ?>';
     const HIDDEN_FLAG =   '<?=MinesweeperBoard::HIDDEN_FLAG?>';
 

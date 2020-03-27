@@ -22,8 +22,7 @@ function saveBoard($id, $board) {
     mysqli_close($conn);
 }
 function loadBoard($id) {
-	$conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"]);
-    mysqli_select_db($conn,"userdata");
+	$conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"],"userdata");
 
     $query = sprintf(
         'select * from chess where id="%s"',
@@ -31,7 +30,6 @@ function loadBoard($id) {
     );
 
     $res = mysqli_query($conn,$query);
-    //echo "Got: " . $res;
     if (mysqli_num_rows($res) > 0) {
         mysqli_close($conn);
         return ($res->fetch_assoc())["grid"];

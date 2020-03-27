@@ -55,10 +55,10 @@ class SudokuBoard extends GameBoard {
 		$this->sqlUpdateBoard();
 	}
 
-	public function getSanatizedBoard() {
+	public function printSanitizedBoard() {
 		$ret = $this->board;
 		//duh, lol
 		unset($ret["answer"]);
-		return $ret;
+		echo $ret;
 	}
 }

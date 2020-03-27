@@ -12,8 +12,6 @@ class MinesweeperBoard extends GameBoard {
 	//SHOWN_EMPTY = 0 through 8;
 	const HIDDEN_EMPTY = 'e';
 
-	//main sql variables
-	public function getID() {return $this->id;}
 
 	public function __construct() {}
 
@@ -106,14 +104,12 @@ class MinesweeperBoard extends GameBoard {
 	}
 	/**
 	 * 	Given to user so they can choose updateBoard()
-	 * @return string user representation of board
 	 */
-	public function getSanatizedBoard() {
+	public function printSanitizedBoard() {
 		if ($this->isWon()) return "DONE";
 		if ($this->isLost()) return "DEAD";
 		$clean = $this->board;
 		//hide where the mines are
-		$clean = str_replace(self::MINE,self::HIDDEN_EMPTY,$clean);
-		return $clean;
+		echo str_replace(self::MINE,self::HIDDEN_EMPTY,$clean);
 	}
 }

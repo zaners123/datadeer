@@ -18,6 +18,9 @@ abstract class GameBoard {
 	protected $gametype;
 	protected $size;
 
+	//main sql variables
+	public function getID() {return $this->id;}
+
 	public function __construct() {}
 
 	/**
@@ -25,11 +28,9 @@ abstract class GameBoard {
 	 * @param $id int ID from SQL table
 	 */
 	public function populateFromID($id) {
-		exit("TODO");//TODO
-		//select * from game join game_turn using (id) where turn=1;
 		$conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"],"userdata");
 		$query = sprintf(
-			"select time_start,time_end,board,gametype,size from game join game_turn using (id) where id=%s and user='%s' and game_turn=1;",
+			"select time_start,time_end,board,gametype,size from game join game_turn using (id) where id=%s and user='%s' and turn=0;",
 			mysqli_real_escape_string($conn, $id),
 			mysqli_real_escape_string($conn, $_SESSION["username"])
 		);
@@ -60,9 +61,8 @@ abstract class GameBoard {
 	public abstract function takeInput();
 	/**
 	 * 	Given to user so they can choose updateBoard()
-	 * @return string user representation of board
 	 */
-	public abstract function getSanatizedBoard();
+	public abstract function printSanitizedBoard();
 
 
 	const LOST = -1;
@@ -92,11 +92,9 @@ abstract class GameBoard {
 	 * Takes board data and inserts it into minesweeper table. Also assigns board an ID (because of autoincrement).
 	 */
 	public function sqlInsertBoard() {
-		exit("TODO");//select * from game join game_turn using (id) where turn=1;
 		$conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"],"userdata");
 		$query = sprintf(
-			"insert into game(user,time_start,board,gametype,size) values ('%s',%s,'%s',%s,'%s');",
-			mysqli_real_escape_string($conn, $_SESSION["username"]),
+			"insert into game(time_start,board,gametype,size) values (%s,'%s',%s,'%s');",
 			mysqli_real_escape_string($conn, $_SERVER["REQUEST_TIME_FLOAT"]),
 			mysqli_real_escape_string($conn, $this->board),
 			mysqli_real_escape_string($conn, $this->gametype),
@@ -104,23 +102,41 @@ abstract class GameBoard {
 		);
 		mysqli_query($conn,$query);
 		$this->id = mysqli_insert_id($conn);
+		//add current user into group
+		mysqli_query($conn,sprintf(
+			"set @c = (select count(*) from game_turn where id=%s);",
+			mysqli_real_escape_string($conn, $this->id)
+		));
+		mysqli_query($conn,sprintf(
+			"insert into game_turn(id,user,role,turn) values (%s,'%s','%s',@c);",
+			mysqli_real_escape_string($conn, $this->id),
+			mysqli_real_escape_string($conn, $_SESSION["username"]),
+			"owner"
+		));
+//		error_log(json_encode(mysqli_error_list($conn)));
 		return $this->id;
 	}
 	/**
 	 * Runs a SQL update off of given board data
 	 */
 	public function sqlUpdateBoard() {
-		exit("TODO");//select * from game join game_turn using (id) where turn=1;
 		$conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"],"userdata");
 		if (!$this->time_end) $this->time_end=0;
 		$query = sprintf(
-			"update game set time_end=%s,board='%s' where id=%s and user='%s'",
+			"update game set time_end=%s,board='%s' where id=%s",
 			mysqli_real_escape_string($conn, $this->time_end),
 			mysqli_real_escape_string($conn, $this->board),
-			mysqli_real_escape_string($conn, $this->id),
-			mysqli_real_escape_string($conn, $_SESSION["username"])
+			mysqli_real_escape_string($conn, $this->id)
 		);
-//		var_dump($query);
+//		error_log($query);
 		mysqli_query($conn,$query);
+		//main cycle turn
+		mysqli_query($conn,sprintf("set @c = (select count(*) from game_turn where id=%s);",
+			mysqli_escape_string($conn,$this->id)
+		));
+		mysqli_query($conn,sprintf("update game_turn set turn=(turn+1)MOD(@c) where id=%s;",
+			mysqli_escape_string($conn,$this->id)
+		));
+//		error_log(json_encode(mysqli_error_list($conn)));
 	}
 }

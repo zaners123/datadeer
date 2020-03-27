@@ -27,4 +27,4 @@ switch ($gametype) {
 }
 $game->takeInput();
 
-echo $game->getSanatizedBoard();
+$game->printSanitizedBoard();
