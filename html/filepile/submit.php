@@ -2,7 +2,8 @@
 $readOnlyDisabled = true;
 require "/var/www/php/requireSignIn.php";
 require "/var/www/php/couch.php";
-require_once "../gold/subdata.php";
+require_once "/var/www/php/subdata.php";
+
 require "/var/www/php/lib.php";
 
 /**

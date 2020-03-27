@@ -1,17 +1,19 @@
 <?php
 require "/var/www/php/startSession.php";
 
-//common functions
+/**
+	May occasionally just yell and exit
+ */
 function saveAsset($userfile, $folder,$maxBits) {
 //	$fileExtension = pathinfo($userfile["name"],PATHINFO_EXTENSION);
 	if ($userfile["size"] > $maxBits) {
-		return "ERR: File too big";
+		exit("ERR: File too big");
 	}
 
 	$filename = "";
 	$keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	$keyspacelen = strlen($keyspace);
-	//NOT CRYPTOGRAPHIC
+	//NOT CRYPTOGRAPHIC, doesnt need to be tho
 	for ($i = 0; $i < 20; ++$i) {
 		$filename .= $keyspace[rand(0, $keyspacelen-1)];
 	}
@@ -27,7 +29,7 @@ function saveAsset($userfile, $folder,$maxBits) {
 		!isset($userfile['error']) ||
 		is_array($userfile['error'])
 	) {
-		return "ERR: Invalid parameters.";
+		exit("ERR: Invalid parameters.");
 	}
 
 	//main check FILETYPE
@@ -46,18 +48,18 @@ function saveAsset($userfile, $folder,$maxBits) {
 		case UPLOAD_ERR_OK:
 			break;
 		case UPLOAD_ERR_NO_FILE:
-			return 'ERR: No file sent.';
+			exit('ERR: No file sent.');
 		case UPLOAD_ERR_INI_SIZE:
-			return 'ERR: Exceeded filesize limit.';
+			exit('ERR: Exceeded filesize limit.');
 		case UPLOAD_ERR_FORM_SIZE:
-			return 'ERR: Exceeded the filesize limit.';
+			exit('ERR: Exceeded the filesize limit.');
 		default:
-			return 'ERR: Unknown errors.';
+			exit('ERR: Unknown errors.');
 	}
 
 	error_log("MOVING FROM ".$userfile["tmp_name"]." TO ".$uploadTo);
 	if (!move_uploaded_file($userfile["tmp_name"],$uploadTo)) {
-		return  "ERR: move failed";
+		exit("ERR: move failed");
 	}
 	return $filename;
 }
