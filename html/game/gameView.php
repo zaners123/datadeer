@@ -1,5 +1,5 @@
 <?php
-if (!isset($_GET["id"]) || empty($_GET["id"]) || strlen($_GET["id"])==0) {
+if (!isset($_GET["id"]) || !$_GET["id"]) {
     //redirect to no id if no id
 	exit();
 }
