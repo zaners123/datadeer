@@ -11,20 +11,30 @@ if (!$id || !$gametype) exit("Give board ID and gametype");
 require_once "lib.php";
 require_once "minesweeper/lib.php";
 require_once "sudoku/lib.php";
-//todo choose board based off of gameType
+require_once "tictactoe/lib.php";
+//choose board based off of gameType
 switch ($gametype) {
-	case 3://mines
+	case GameBoard::MINESWEEPER:
 		$game = new MinesweeperBoard();
 		$game->populateFromID($id);
 		break;
-	case 4://sudoku
+	case GameBoard::SUDOKU:
 		$game = new SudokuBoard();
 		$game->populateFromID($id);
+		break;
+	case GameBoard::TICTACTOE:
+		$game = new TicTacToeBoard();
+		$game ->populateFromID($id);
 		break;
 	default:
 		exit("Unknown gametype");
 		break;
 }
-$game->takeInput();
 
-$game->printSanitizedBoard();
+if (isset($_POST)) {
+	$game->takeInput($_POST);
+} else {
+	$game->takeInput($_GET);
+}
+
+echo $game->getSanitizedBoard();

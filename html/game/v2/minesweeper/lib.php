@@ -12,7 +12,6 @@ class MinesweeperBoard extends GameBoard {
 	//SHOWN_EMPTY = 0 through 8;
 	const HIDDEN_EMPTY = 'e';
 
-
 	public function __construct() {}
 
 	private $parsedSize = null;
@@ -57,7 +56,7 @@ class MinesweeperBoard extends GameBoard {
 	 * Given coords, it sees if player dies. If not, it reveals the spot and recurses adjacent zeroes
 	 * @param $input array x and y clicked at
 	 */
-	function takeInput() {
+	function takeInput($input) {
 		if (!$this->isActive()) return;
 		$x = filter_input(INPUT_GET,"x",FILTER_VALIDATE_INT);
 		$y = filter_input(INPUT_GET,"y",FILTER_VALIDATE_INT);
@@ -105,11 +104,11 @@ class MinesweeperBoard extends GameBoard {
 	/**
 	 * 	Given to user so they can choose updateBoard()
 	 */
-	public function printSanitizedBoard() {
+	public function getSanitizedBoard() {
 		if ($this->isWon()) return "DONE";
 		if ($this->isLost()) return "DEAD";
 		$clean = $this->board;
 		//hide where the mines are
-		echo str_replace(self::MINE,self::HIDDEN_EMPTY,$clean);
+		return str_replace(self::MINE,self::HIDDEN_EMPTY,$clean);
 	}
 }

@@ -38,6 +38,8 @@ if (isset($_SESSION["username"])) {
 <div><a href="https://boinc.bakerlab.org/" class="black">Donate your computing power to fight Coronavirus!</a></div>
 <div><a href="/game" class="black">All board games are being remade, may be inaccessible for the next couple days. (As of 3/25)</a></div>
 
+<div>Now with <a href="/game/v2/#tabs-4">Sudoku!<br><img width="10%" src="sudoku.png"></a></div>
+
 <?php require "../php/block/directoryLong.php";?>
 <?php require "../php/footer.php"; ?>
 <?php

@@ -45,7 +45,7 @@
 		<td> </td>
 		<td><a href="/merch">Merch</a></td>
 		<td><a href="/test">Tests</a></td>
-		<td><a href="/game/minesweeper">Minesweeper</a></td>
+		<td><a href="/game/v2">Minesweeper</a></td>
 		<td><a href="/weather">Weather</a></td>
 		<td><a href="/dognet">DogNet</a></td>
 	</tr>
@@ -90,7 +90,7 @@
 	["/game/libs","MadLibs&#8482;"],
 	["/merch","Merch"],
 	["/other/minecraft.php","Minecraft"],
-	["/game/minesweeper","Minesweeper"],
+	["/game/v2","Minesweeper"],
 	["/chats/pchat","Private Chat"],
 	["/rs/","Raspberry Sprinkler"],
 	["/directory","Recursion - Definition"],

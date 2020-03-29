@@ -21,8 +21,7 @@
 
 <br>
 <?php
-$conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"]);
-mysqli_select_db($conn,"userdata");
+$conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"],"userdata");
 
 //echo recent 5 messages
 

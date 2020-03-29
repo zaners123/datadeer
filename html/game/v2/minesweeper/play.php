@@ -10,25 +10,25 @@
 		height:64px;
 		font-size: 48px;
 	}
-	.boardBase {background: #fff;color: #fff;}
-	.boardCurMain {background: #fff;color: #11f;}
-	.boardCurFaint {background: #fff;color: #0f0;}
+	.board0 {background: #fff;color: #fff;}
+	.board1 {background: #fff;color: #11f;}
+	.board2 {background: #fff;color: #0f0;}
 	.board3 {background: #fff;color: #f00;}
 	.board4 {background: #fff;color: #009;}
 	.board5 {background: #fff;color: #800;}
 	.board6 {background: #fff;color: #0ff;}
 	.board7 {background: #fff;color: #80f;}
 	.board8 {background: #fff;color: #0ff;}
-	.boardErr {background: #333;color: #333;}
+	.boarde {background: #333;color: #333;}
 	.boardf {background: #66f;color: #f00;}
 </style>
 <?php
 require "/var/www/php/bodyTop.php";
 require "lib.php";
+$board = new MinesweeperBoard();
 if (isset($_GET["id"])) {
-	$board = new MinesweeperBoard();
 	$id = filter_input(INPUT_GET,"id",FILTER_VALIDATE_INT);
-	$boardID = $id;
+	$board->populateFromID($id);
 } else {
 	if (isset($_GET["size"])) {
 		$size = $_GET["size"];
@@ -37,11 +37,10 @@ if (isset($_GET["id"])) {
 	} else {
 		exit("Size unknown");
 	}
-	$board = new MinesweeperBoard();
-
 	$board->populateByGenerate($size);
-	$boardID = $board->getID();
-} ?>
+}
+$boardID = $board->getID();
+?>
 <h1 class="center">Minesweeper (Game #<?=$boardID?>)</h1>
 <div id="stats"></div>
 <div id="boardHolder">
@@ -52,7 +51,7 @@ if (isset($_GET["id"])) {
 			for ($x=0;$x<$board->parseSize()["width"];$x++) {
 //				echo "<td class='cell' onmousedown='moused($x,$y)' >?</td>";
 //				echo "<td class='cell'>?</td>";
-				echo "<td class='cell' oncontextmenu='toggleFlag($x,$y );return false;' onclick='sendBoard($x,$y )'>?</td>";
+				echo "<td class='cell' oncontextmenu='toggleFlag($x,$y );return false;' onclick='sendLoc($x,$y )'>?</td>";
 			}
 			echo "</tr>";
 		}?>

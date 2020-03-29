@@ -1,6 +1,6 @@
 <?php
 
-/**It should be worth noting, please DO NOT FUCK WITH THIS FILE
+/**It should be worth noting, please DO NOT MESS WITH THIS FILE
  * It is the thing in charge of user authentication and access to locations.
  This can be called multiple times. */
 require_once "httpHeader.php";

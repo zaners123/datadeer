@@ -9,29 +9,112 @@
         $("#tabs").tabs();
     });
 </script>
+
+<!--V1 access code (haha not that kind of access code)-->
+<script>
+//	Public games
+    function makeGamePublic(name) {
+        fetch("../v1/matchmaker.php?gen="+name,{credentials: "same-origin"}).then(function (response) {
+            response.text().then(function (gameId) {
+                window.location = "/game/gameView.php?id="+gameId;
+            });
+        });
+    }
+    function getMatchesPublic() {
+        //matchmaker.php, reason = get
+        fetch("../v1/matchmaker.php?match=g",{credentials: "same-origin"}).then(function (response) {
+            response.text().then(function (text) {
+                console.log("REC"+text);
+                applyJSONPublic(JSON.parse(text));
+            });
+        });
+    }
+    function applyJSONPublic(res) {
+        console.log("I got a JSON:");
+        console.log(res);
+
+        //clear div container
+        document.getElementById("table").innerHTML="";
+
+        for (let key in res) {
+            if (key==="a" || key[0]==="_") continue;
+            appendRowDataPublic(key,res[key]);
+        }
+
+    }
+    function appendRowDataPublic(name,link) {
+        let gameTypeLong;
+        switch (link[0]) {
+            case "c":gameTypeLong = "chess";break;
+            case "x":gameTypeLong = "checkers";break;
+            case "f":gameTypeLong = "connect";break;
+            case "b":gameTypeLong = "battleship";break;
+        }
+        document.getElementById("table").innerHTML+="<div style=\"font-size: 200%;padding-left: 16px;padding-right: 16px;border: 4px solid black\">\n" +
+            "\t\t<a href=\"gameView.php?id="+link+"\" style=\"display: inline-block\">"+name+" - "+gameTypeLong+"</a>\n" +
+            "\t</div>";
+
+    }
+//  Private Games
+    function joinGamePrivate() {
+        let gameId = document.getElementById("gameIdInput").value;
+        gameId = gameId.split(/[\W]/).join("");
+        window.location.replace("/game/v1/gameView.php?id="+gameId);
+
+        return false;
+    }
+    function makeGamePrivate(name) {
+        document.getElementById("theBody").innerHTML= "Generating "+name+" game...<br>Please wait...";
+        fetch("../v1/"+name+"Base.php?gencode=true",{credentials: "same-origin"}).then(function (response) {
+            response.text().then(function (gameId) {
+                document.getElementById("theBody").innerHTML=
+                    name+" game made!<br>Give the opponent the game id <br>\""+gameId+"\"<br>"+" and then " +
+                    "<a href=\"/game/gameView.php?id="+gameId+"\">Go Here to Play</a>";
+            });
+        });
+    }
+</script>
+
+
 <?php require "/var/www/php/bodyTop.php"; ?>
 <?php require "minesweeper/lib.php"; ?>
+
+<div>
+	Join an existing Game:
+	<form action="join.php">
+		<label>Game ID:<input type="number" name="id"></label>
+		<input type="submit" value="Join">
+	</form>
+</div>
+<hr>
 <div id="tabs">
 	<ul>
-		<li><a href="#tabs-0">Chess</a></li>
-		<li><a href="#tabs-1">Checkers</a></li>
+		<li><a href="#tabs-0">Chess<br><img width="100vmin" height="100vmin" src="chess.png"></a></li>
+		<li><a href="#tabs-1">Checkers<br><img width="100vmin" height="100vmin" src="checkers.png"></a></li>
 		<li><a href="#tabs-2">Battleship</a></li>
-		<li><a href="#tabs-3">Minesweeper</a></li>
-		<li><a href="#tabs-4">Sudoku</a></li>
+		<li><a href="#tabs-3">Minesweeper<br><img width="100vmin" height="100vmin" src="minesweeper/minesweeper.png"></a></li>
+		<li><a href="#tabs-4">Sudoku<br><img width="100vmin" height="100vmin" src="sudoku/sudoku.png"></a></li>
+		<li><a href="#tabs-5">Tic Tac Toe</a></li>
+		<li><a href="#tabs-6">Connect 4</a></li>
+		<li><a href="#tabs-7">Poker</a></li>
 	</ul>
 	<div id="tabs-0">
-		<a href="/game">Game</a>
+		<button onclick="makeGamePrivate('chess')">&#9812; Start a Private Chess Game &#9812;</button><br>
+		<button onclick="makeGamePublic('chess')">&#9812; Public Chess Game &#9812;</button><br>
+		<a href="/learn/games/chess.php">Learn how to play Chess</a><br>
 	</div>
 	<div id="tabs-1">
-		<a href="/game">Game</a>
+		<button onclick="makeGamePrivate('checkers')">&#9920; Start a Private Checkers Game &#9920;</button><br>
+		<button onclick="makeGamePublic('checkers')">&#9920; Public Checkers Game &#9920;</button><br>
 	</div>
 	<div id="tabs-2">
-		<a href="/game">Game</a>
+		<button onclick="makeGamePublic('battleship')">&#128165; Public Battleship Game&#128165;</button><br>
+		<button onclick="makeGamePrivate('battleship')">&#128165; Start a Battleship Game &#128165;</button>
 	</div>
 	<div id="tabs-3">
 		<div class="leftHalf">
 			<h2>Choose Game Board</h2>
-			<h2 id="err" class="red"></h2>
+			<h2 id="err" class="red"> </h2>
 			<?php foreach ($boardSizes as $size) { echo "<a href='minesweeper/play.php?size=$size[0]'><button>$size[0] mines</button></a></br>";}?>
 			<form id="form" action="minesweeper/play.php" onsubmit="return verifyCustom(this);" method="get">
 				<input type="button" value="custom" onclick="showCustom()"><br>
@@ -99,6 +182,20 @@
 		</script>
 	</div>
 	<div id="tabs-4">
-		Not done yet
+		<h1><a href="sudoku/play.php?size=3">Play Sudoku Here!</a></h1>
+		<div>This page will soon have difficulty settings, leaderboards, etc.</div>
 	</div>
+	<div id="tabs-5">
+		<a href="tictactoe/play.php">Start a game of Tic Tac Toe</a>
+	</div>
+	<div id="tabs-6">
+		<button onclick="makeGamePublic('connect')">&#9922; Public Connect Game &#9922;</button><br>
+		<button onclick="makeGamePrivate('connect')">&#9922; Start a Connect Game &#9922;</button><br>
+	</div>
+	<div id="tabs-7">
+		<a href="poker/play.php">Play "Texas hold 'em" Poker (You need 2 or more players, no max player count)</a>
+	</div>
+</div>
+<div id="table">
+
 </div>
