@@ -4,8 +4,16 @@
 	<style>
 		.board {
 			font-size: 64px;
-			border: 5px solid black;
+			width: 64px;
+			height: 64px;
 		}
+		#boardViewer {
+			border-collapse: collapse;
+		}
+		.uline{border-top:      5px solid black}
+		.rline{border-right:    5px solid black}
+		.bline{border-bottom:   5px solid black}
+		.lline{border-left:     5px solid black}
 	</style>
 <?php require "/var/www/php/bodyTop.php"; ?>
 <?php
@@ -50,15 +58,15 @@ $boardID = $board->getID();
 	}
 	let interval = window.setInterval(clicked,1000,100);
 </script>
-<h1>Tic Tac Toe (ID is <?=$boardID?> to share)</h1>
+<h1>Tic Tac Toe (Share ID: <?=$boardID?>)</h1>
 <h2 id="status">Loading the game...</h2>
 <div class="center">
-	<table align="center">
+	<table id="boardViewer" align="center">
 		<tbody id="board">
 			<?php for ($y=0;$y<3;$y++) { ?>
 			<tr>
 				<?php for ($x=0;$x<3;$x++) { ?>
-				<td class="board" onclick="clicked(<?=$x+$y*3?>)"> </td>
+				<td class="board <?=($x!=0?"lline ":"").($y!=0?"uline ":"").($y!=2?"bline ":"").($x!=2?"rline":"")?>" onclick="clicked(<?=$x+$y*3?>)"> </td>
 				<?php } ?>
 			</tr>
 			<?php } ?>

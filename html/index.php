@@ -36,9 +36,7 @@ if (isset($_SESSION["username"])) {
 <!--main front page for signed in peeps-->
 <img src="/datadeernet.png" width="50%" height="20%">
 <div><a href="https://boinc.bakerlab.org/" class="black">Donate your computing power to fight Coronavirus!</a></div>
-<div><a href="/game" class="black">All board games are being remade, may be inaccessible for the next couple days. (As of 3/25)</a></div>
-
-<div>Now with <a href="/game/v2/#tabs-4">Sudoku!<br><img width="10%" src="sudoku.png"></a></div>
+<div><a href="/game/v2" class="black">WAY more Board Games! Sudoku, TicTacToe, and more!</a></div>
 
 <?php require "../php/block/directoryLong.php";?>
 <?php require "../php/footer.php"; ?>

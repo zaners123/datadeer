@@ -14,9 +14,9 @@
 <script>
 //	Public games
     function makeGamePublic(name) {
-        fetch("../v1/matchmaker.php?gen="+name,{credentials: "same-origin"}).then(function (response) {
+        fetch("/game/v1/matchmaker.php?gen="+name,{credentials: "same-origin"}).then(function (response) {
             response.text().then(function (gameId) {
-                window.location = "/game/gameView.php?id="+gameId;
+                window.location = "/game/v1/gameView.php?id="+gameId;
             });
         });
     }
@@ -34,7 +34,7 @@
         console.log(res);
 
         //clear div container
-        document.getElementById("table").innerHTML="";
+        document.getElementById("table").innerHTML="Public Games:";
 
         for (let key in res) {
             if (key==="a" || key[0]==="_") continue;
@@ -50,11 +50,9 @@
             case "f":gameTypeLong = "connect";break;
             case "b":gameTypeLong = "battleship";break;
         }
-        document.getElementById("table").innerHTML+="<div style=\"font-size: 200%;padding-left: 16px;padding-right: 16px;border: 4px solid black\">\n" +
-            "\t\t<a href=\"gameView.php?id="+link+"\" style=\"display: inline-block\">"+name+" - "+gameTypeLong+"</a>\n" +
-            "\t</div>";
-
+        document.getElementById("table").innerHTML+="<div><a href=\"/game/v1/gameView.php?id="+link+"\" style=\"display: inline-block\">"+gameTypeLong+" with "+name+"</a></div>";
     }
+	getMatchesPublic();
 //  Private Games
     function joinGamePrivate() {
         let gameId = document.getElementById("gameIdInput").value;
@@ -64,38 +62,37 @@
         return false;
     }
     function makeGamePrivate(name) {
-        document.getElementById("theBody").innerHTML= "Generating "+name+" game...<br>Please wait...";
-        fetch("../v1/"+name+"Base.php?gencode=true",{credentials: "same-origin"}).then(function (response) {
+        document.getElementById("table").innerHTML= "Generating "+name+" game...<br>Please wait...";
+        fetch("/game/v1/"+name+"Base.php?gencode=true",{credentials: "same-origin"}).then(function (response) {
             response.text().then(function (gameId) {
-                document.getElementById("theBody").innerHTML=
+                document.getElementById("table").innerHTML=
                     name+" game made!<br>Give the opponent the game id <br>\""+gameId+"\"<br>"+" and then " +
-                    "<a href=\"/game/gameView.php?id="+gameId+"\">Go Here to Play</a>";
+                    "<a href=\"/game/v1/gameView.php?id="+gameId+"\">Go Here to Play</a>";
             });
         });
     }
 </script>
-
-
 <?php require "/var/www/php/bodyTop.php"; ?>
 <?php require "minesweeper/lib.php"; ?>
-
+<h1>DataDeer Board Games</h1>
 <div>
 	Join an existing Game:
 	<form action="join.php">
-		<label>Game ID:<input type="number" name="id"></label>
+		<label>Share ID:<input name="id"></label>
 		<input type="submit" value="Join">
 	</form>
 </div>
 <hr>
+<div>Start a new game:</div>
 <div id="tabs">
 	<ul>
-		<li><a href="#tabs-0">Chess<br><img width="100vmin" height="100vmin" src="chess.png"></a></li>
-		<li><a href="#tabs-1">Checkers<br><img width="100vmin" height="100vmin" src="checkers.png"></a></li>
-		<li><a href="#tabs-2">Battleship</a></li>
-		<li><a href="#tabs-3">Minesweeper<br><img width="100vmin" height="100vmin" src="minesweeper/minesweeper.png"></a></li>
-		<li><a href="#tabs-4">Sudoku<br><img width="100vmin" height="100vmin" src="sudoku/sudoku.png"></a></li>
-		<li><a href="#tabs-5">Tic Tac Toe</a></li>
-		<li><a href="#tabs-6">Connect 4</a></li>
+		<li><a href="#tabs-0">Chess<br><img width="100vmin" height="100vmin" src="img/chess.png"></a></li>
+		<li><a href="#tabs-1">Checkers<br><img width="100vmin" height="100vmin" src="img/checkers.png"></a></li>
+		<li><a href="#tabs-2">Battleship<br><img width="200vmin" height="100vmin" src="img/battleship.png"></a></li>
+		<li><a href="#tabs-3">Minesweeper<br><img width="100vmin" height="100vmin" src="img/minesweeper.png"></a></li>
+		<li><a href="#tabs-4">Sudoku<br><img width="100vmin" height="100vmin" src="img/sudoku.png"></a></li>
+		<li><a href="#tabs-5">Tic Tac Toe<br><img width="100vmin" height="100vmin" src="img/tictactoe.png"></a></li>
+		<li><a href="#tabs-6">Connect 4<br><img width="100vmin" height="100vmin" src="img/connect4.png"></a></li>
 		<li><a href="#tabs-7">Poker</a></li>
 	</ul>
 	<div id="tabs-0">
@@ -186,14 +183,14 @@
 		<div>This page will soon have difficulty settings, leaderboards, etc.</div>
 	</div>
 	<div id="tabs-5">
-		<a href="tictactoe/play.php">Start a game of Tic Tac Toe</a>
+		<h1><a href="tictactoe/play.php">Start a game of Tic Tac Toe</a></h1>
 	</div>
 	<div id="tabs-6">
 		<button onclick="makeGamePublic('connect')">&#9922; Public Connect Game &#9922;</button><br>
 		<button onclick="makeGamePrivate('connect')">&#9922; Start a Connect Game &#9922;</button><br>
 	</div>
 	<div id="tabs-7">
-		<a href="poker/play.php">Play "Texas hold 'em" Poker (You need 2 or more players, no max player count)</a>
+		<h1><a href="poker/play.php">Play "Texas hold 'em" Poker (You need 2 or more players, no max player count)</a></h1>
 	</div>
 </div>
 <div id="table">

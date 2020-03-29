@@ -40,7 +40,7 @@ If there are only boxes when you click, <a href="../other/settings.php">turn on 
         let useLetters = <?php
 	        require_once "/var/www/php/couch.php";
 	        $doc = getDoc("profile",$_SESSION["username"],$blankDefault);
-	        echo $doc["gameletter"];
+	        echo $doc["gameletter"]=="true"?"true":"false";
 	        ?>;
 
         //set vars based off of game type
@@ -58,7 +58,7 @@ If there are only boxes when you click, <a href="../other/settings.php">turn on 
             case "b":gridLen=100;gameTypeLong = "battleship";colSize=10;break;
         }
         document.getElementById("title").innerHTML=capitalizeFirstLetter(gameTypeLong);
-        document.getElementById("subtitle").innerHTML=capitalizeFirstLetter(gameTypeLong)+" Board";
+        document.getElementById("subtitle").innerHTML=capitalizeFirstLetter(gameTypeLong)+" Board (Share ID '<?=$_GET["id"]?>')";
 
         //define column count
         if (gameType==="f") {

@@ -14,7 +14,7 @@
 		<td><a href="/golduser">Subscription Menu</a></td>
 		<td><a href="/chats/pchat">Private Chat</a></td>
 		<td><a href="/directory">~Directory~</a></td>
-		<td><a href="/game">Board Games</a></td>
+		<td><a href="/game/v2">Board Games</a></td>
 		<td><a href="/other/about.php">About the Server</a></td>
 		<td><a href="/other/terraria.php">Terraria</a></td>
 
@@ -45,7 +45,7 @@
 		<td> </td>
 		<td><a href="/merch">Merch</a></td>
 		<td><a href="/test">Tests</a></td>
-		<td><a href="/game/v2">Minesweeper</a></td>
+		<td><a href="/game/v2/#tabs-3">Minesweeper</a></td>
 		<td><a href="/weather">Weather</a></td>
 		<td><a href="/dognet">DogNet</a></td>
 	</tr>
@@ -83,7 +83,7 @@
 	["/directory","Directory"],
 	["/filepile","File Pile"],
 	["/game/generator/fortune.php","Fortunes"],
-	["/game","Games!"],
+	["/game/v2","Games!"],
 	["/chats/gchat","Group Chat"],
 	["/game/generator/insult.php","Insults"],
 	["/learn","Learn"],

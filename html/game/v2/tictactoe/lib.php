@@ -5,7 +5,7 @@ class TicTacToeBoard extends GameBoard {
 
 	const PIECE_X = "X";
 	const PIECE_O = "O";
-	const PIECE_BLANK = "_";
+	const PIECE_BLANK = " ";
 
 	public function isPlayerWon($p) {
 		return (
@@ -23,7 +23,7 @@ class TicTacToeBoard extends GameBoard {
 	}
 	private function isTied() {
 		$ret = true;
-		error_log($this->board);
+//		error_log($this->board);
 		for($x=0;$x<9;$x++) if ($this->board[$x]===self::PIECE_BLANK[0]) $ret = false;
 		return $ret;
 	}
@@ -50,7 +50,7 @@ class TicTacToeBoard extends GameBoard {
 		if (!$this->isActive()) return;
 		//take input
 		$i = filter_input(INPUT_GET,"i",FILTER_VALIDATE_INT);
-		if ($i && $i>=0 && $i<9 && $this->board[$i]==self::PIECE_BLANK) {
+		if ($i!==false && $i!==null && $i>=0 && $i<9 && $this->board[$i]==self::PIECE_BLANK) {
 			$this->board[$i] = $this->role;
 			//after the player moves, the turn is toggled to the next player
 			$this->toggleTurn();
