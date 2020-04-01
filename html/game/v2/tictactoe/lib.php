@@ -40,7 +40,7 @@ class TicTacToeBoard extends GameBoard {
 		return $this->isPlayerWon($this->getOtherPlayer());
 	}
 
-	public function takeInput($input) {
+	public function takeInput() {
 		//stop input when <2 users in game
 		$conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"],"userdata");
 		if ($this->getPlayerCount($conn, $this->id)<2) return;
@@ -57,6 +57,12 @@ class TicTacToeBoard extends GameBoard {
 			$this->sqlUpdateBoard();
 		}
 		mysqli_close($conn);
+	}
+
+	public static function canPlayerJoinGame($players) {
+		//add them to the game
+		if ($players >= 2) return false;
+		return $players == 0 ? "X" : "O";
 	}
 
 	public function populateByGenerate($size) {

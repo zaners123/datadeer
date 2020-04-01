@@ -1,7 +1,15 @@
 <?php require "/var/www/php/header.php"; ?>
 <title>Games</title>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<!--<link rel="stylesheet" href="/resources/demos/style.css">-->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<style>
+	table {
+		font-size: 1em;
+	}
+
+	.ui-draggable, .ui-droppable {
+		background-position: top;
+	}
+</style>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
@@ -63,9 +71,7 @@
         document.getElementById("table").innerHTML= "Generating "+name+" game...<br>Please wait...";
         fetch("/game/v1/"+name+"Base.php?gencode=true",{credentials: "same-origin"}).then(function (response) {
             response.text().then(function (gameId) {
-                document.getElementById("table").innerHTML=
-                    name+" game made!<br>Give the opponent the game id <br>\""+gameId+"\"<br>"+" and then " +
-                    "<a href=\"/game/v1/gameView.php?id="+gameId+"\">Go Here to Play</a>";
+                window.location = "/game/v1/gameView.php?id="+gameId;
             });
         });
     }
@@ -177,7 +183,9 @@
 		</script>
 	</div>
 	<div id="tabs-4">
-		<h1><a href="sudoku/play.php?size=3">Play Sudoku Here!</a></h1>
+		<h1><a href="sudoku/play.php?size=3&diff=e">Play Easy Sudoku Here!</a></h1>
+		<h1><a href="sudoku/play.php?size=3&diff=n">Play Normal Sudoku Here!</a></h1>
+		<h1><a href="sudoku/play.php?size=3&diff=h">Play Hard Sudoku Here!</a></h1>
 		<div>This page will soon have difficulty settings, leaderboards, etc.</div>
 	</div>
 	<div id="tabs-5">
@@ -188,7 +196,8 @@
 		<button onclick="makeGamePrivate('connect')">&#9922; Start a Connect Game &#9922;</button><br>
 	</div>
 	<div id="tabs-7">
-		<h1><a href="poker/play.php">Play "Texas hold 'em" Poker (You need 2 or more players, no max player count)</a></h1>
+		Play "Texas hold 'em" Poker. It's "no limit" type, so you can bet as high as you want.
+		<h1><a href="poker/play.php">Start a table Here</a></h1>
 	</div>
 </div>
 <div id="table">

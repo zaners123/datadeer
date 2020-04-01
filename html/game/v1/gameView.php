@@ -58,7 +58,8 @@ If there are only boxes when you click, <a href="../other/settings.php">turn on 
             case "b":gridLen=100;gameTypeLong = "battleship";colSize=10;break;
         }
         document.getElementById("title").innerHTML=capitalizeFirstLetter(gameTypeLong);
-        document.getElementById("subtitle").innerHTML=capitalizeFirstLetter(gameTypeLong)+" Board (Share ID '<?=$_GET["id"]?>')";
+        let idlink = "<a href=\"https://datadeer.net/game/v2/join.php?id=<?=$_GET["id"]?>\"><?=$_GET["id"]?></a>";
+        document.getElementById("subtitle").innerHTML=capitalizeFirstLetter(gameTypeLong)+" Board (Share ID '"+idlink+"')";
 
         //define column count
         if (gameType==="f") {

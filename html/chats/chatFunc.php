@@ -3,8 +3,7 @@ function addChat($from, $to, $msg) {
 	//data = data.split(/[<>]/).join("").split("\\n").join("<br>");
 	$msg = preg_replace("/[<>]/","",$msg);
 	$msg = preg_replace("/\n/","<br>&emsp;",$msg);
-	$conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"]);
-	mysqli_select_db($conn,"userdata");
+	$conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"],"userdata");
 	$query = sprintf(
 		'insert into pchat (msgtime,msgfrom,msgto,msg) values ("%s","%s","%s","%s")',
 		mysqli_real_escape_string($conn, time()),
@@ -16,8 +15,7 @@ function addChat($from, $to, $msg) {
 	mysqli_close($conn);
 }
 function readChat($from, $to) {
-	$conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"]);
-	mysqli_select_db($conn,"userdata");
+	$conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"],"userdata");
 	$sql = sprintf(
 	//if the message is (to you AND from them) OR (to them AND from you)
 		'select msgtime,msgfrom,msgto,msg from pchat where (msgto="%s" and msgfrom="%s") or (msgto="%s" and msgfrom="%s")',

@@ -35,9 +35,10 @@ if (isset($_SESSION["username"])) {
 <?php require "/var/www/php/bodyTop.php"; ?>
 <!--main front page for signed in peeps-->
 <img src="/datadeernet.png" width="50%" height="20%">
-<div><a href="https://boinc.bakerlab.org/" class="black">Donate your computing power to fight Coronavirus!</a></div>
-<div><a href="/game/v2" class="black">WAY more Board Games! Sudoku, TicTacToe, and more!</a></div>
-<div><a href="/deercoin" class="black">Now with a currency, DeerCoin! Gamble away your DeerCoin life savings!</a></div>
+<div><a class="black" href="https://boinc.bakerlab.org/">Donate your computing power to fight Coronavirus!</a></div>
+<div><a class="black" href="https://github.com/zaners123/datadeer">Check out this site's source code!</a></div>
+<div><a class="black" href="/game/v2">WAY more Board Games! Sudoku, TicTacToe, and more!</a></div>
+<div><a class="black" href="/deercoin">Now with a currency, DeerCoin! Gamble away your DeerCoin life savings!</a></div>
 
 <?php require "../php/block/directoryLong.php";?>
 <?php require "../php/footer.php"; ?>

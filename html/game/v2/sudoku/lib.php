@@ -114,7 +114,12 @@ class SudokuBoard extends GameBoard {
 	 */
 	public function populateByGenerate($size) {
 		//todo care about size (maybe). Size could be hints
-		$hints = 50;
+		switch ($_GET["diff"]) {
+			case 'e':$hints=50;break;
+			case 'n':$hints=30;break;
+			case 'h':$hints=24;break;
+			default:exit("Bad difficiulty");
+		}
 		$this->size = $size;
 		$this->board = $this->generateBoard($hints);
 		$this->sqlInsertBoard();

@@ -54,9 +54,8 @@ class MinesweeperBoard extends GameBoard {
 	}
 	/**
 	 * Given coords, it sees if player dies. If not, it reveals the spot and recurses adjacent zeroes
-	 * @param $input array x and y clicked at
 	 */
-	function takeInput($input) {
+	function takeInput() {
 		if (!$this->isActive()) return;
 		$x = filter_input(INPUT_GET,"x",FILTER_VALIDATE_INT);
 		$y = filter_input(INPUT_GET,"y",FILTER_VALIDATE_INT);

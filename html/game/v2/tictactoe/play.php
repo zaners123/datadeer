@@ -58,7 +58,7 @@ $boardID = $board->getID();
 	}
 	let interval = window.setInterval(clicked,1000,100);
 </script>
-<h1>Tic Tac Toe (Share ID: <?=$boardID?>)</h1>
+<h1>Tic Tac Toe (Share ID: <a href="https://datadeer.net/game/v2/join.php?id=<?=$boardID?>"><?=$boardID?></a>)</h1>
 <h2 id="status">Loading the game...</h2>
 <div class="center">
 	<table id="boardViewer" align="center">
