@@ -117,7 +117,7 @@ class SudokuBoard extends GameBoard {
 		$hints = 50;
 		$this->size = $size;
 		$this->board = $this->generateBoard($hints);
-		parent::populateByGenerate($size);
+		$this->sqlInsertBoard();
 	}
 
 	public function takeInput($input) {

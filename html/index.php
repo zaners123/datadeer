@@ -95,7 +95,7 @@ require "../php/headerNoSignin.php"; ?>
 	<h4>Say hello and sign the <a href="/guestbook">Guestbook</a>!</h4>
 	<!--<h4>Now with an endless <a href="/livestream/">livestream</a> of dog videos (enable autoplay).</h4>-->
 	<script>document.getElementById("submit").focus();</script>
-	<a href="tos/">Terms of Service</a>
+	<a href="other/termsofservice.html">Terms of Service</a>
 </div>
 <?php require "/var/www/php/footer.php"; ?>
 <?php } ?>

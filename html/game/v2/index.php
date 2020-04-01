@@ -25,21 +25,19 @@
         fetch("../v1/matchmaker.php?match=g",{credentials: "same-origin"}).then(function (response) {
             response.text().then(function (text) {
                 console.log("REC"+text);
-                applyJSONPublic(JSON.parse(text));
+                let res = JSON.parse(text);
+                //clear div container
+                document.getElementById("table").innerHTML="Public Games:";
+
+                for (let key in res) {
+                    if (key==="a" || key[0]==="_") continue;
+                    appendRowDataPublic(key,res[key]);
+                }
             });
         });
     }
     function applyJSONPublic(res) {
-        console.log("I got a JSON:");
-        console.log(res);
 
-        //clear div container
-        document.getElementById("table").innerHTML="Public Games:";
-
-        for (let key in res) {
-            if (key==="a" || key[0]==="_") continue;
-            appendRowDataPublic(key,res[key]);
-        }
 
     }
     function appendRowDataPublic(name,link) {

@@ -41,7 +41,7 @@ class MinesweeperBoard extends GameBoard {
 		if (!preg_match("/^\d+x\d+,\d+$/",$size)) exit("Bad minesweeper size");
 		$this->board = str_pad("",$this->parseSize()["width"] * $this->parseSize()["height"],self::HIDDEN_EMPTY);
 		$this->placeMines($this->parseSize()["mines"]);
-		parent::populateByGenerate($size);
+		$this->sqlInsertBoard();
 	}
 
 	/**

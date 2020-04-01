@@ -53,7 +53,7 @@
 		<td> </td>
 		<td> </td>
 		<td> </td>
-		<td> </td>
+		<td><a href="/game/v2/#tabs-4">Sudoku</a></td>
 		<td><a href="https://github.com/zaners123/DataDeer.net">&#60;&#47;&#62; Source</a></td>
 		<td><a href="/other/settings.php">Settings</a></td>
 	</tr>

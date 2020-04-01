@@ -63,7 +63,7 @@ class TicTacToeBoard extends GameBoard {
 		$this->gametype = self::TICTACTOE;
 		$this->size = $size;
 		$this->board = str_pad("",9,self::PIECE_BLANK);
-		parent::populateByGenerate($size);
+		$this->sqlInsertBoard();
 	}
 
 	public function getSanitizedBoard()	{

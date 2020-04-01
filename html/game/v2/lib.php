@@ -124,10 +124,10 @@ abstract class GameBoard {
 	 * Generates new board. Do this by first validating the size, then setting the size, then setting everything else
 	 * make sure to call parent. SET SIZE AT START so you can use parseSize in the generate function (necessary because that's the only real use of the size function)
 	 */
-	public function populateByGenerate($size) {
-		$this->size = $size;
-		$this->sqlInsertBoard();
-	}
+	public abstract function populateByGenerate($size);
+//		$this->size = $size;
+//		$this->sqlInsertBoard();
+//	}
 	//main user input/output
 	/**
 	 * An ajax call will pass JSON input data to request.php, which will be fed directly here. PROCESS USER INPUT

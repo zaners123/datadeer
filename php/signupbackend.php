@@ -11,7 +11,7 @@ if (!(isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["pa
     return;
 }
 
-if(strlen($_POST["username"]) < 4 || strlen($_POST["username"]) >= 32) {
+if(strlen($_POST["username"]) < 4 || strlen($_POST["username"]) > 30) {
 	echo "Username length invalid, needs to be 4-30 characters.";return;
 }
 
@@ -29,16 +29,20 @@ if (strtolower($_POST["username"])==="wisely") {
 
 //if the passwords do not match tell the user
 if ($_POST["password"]!==$_POST["passwordVerify"]) {
-    echo "Passwords do not match, please resubmit";return;
+    exit("Passwords do not match, please resubmit");
 }
 
 //verify the username and password meet minimum/maximum requirements (username max 32, password max 7000)
 if(strlen($_POST["password"]) < 4 || strlen($_POST["password"]) > 7000) {
-    echo "Password length invalid, needs to be 4-7000 characters.";return;
+    exit("Password length invalid, needs to be 4-7000 characters.");
 }
 
 if ($_POST["username"] !== preg_replace("/[\W]/","",$_POST["username"])) {
-    echo "Usernames can only contain a-z, A-Z, 0-9, and _";return;
+    exit("Usernames can only contain a-z, A-Z, 0-9, and _");
+}
+
+if (!preg_match("/^\w{4,30}$/",$_POST["username"])) {
+	exit("Usernames can only contain a-z, A-Z, 0-9, and _");
 }
 
 //echo "Captcha starting";
