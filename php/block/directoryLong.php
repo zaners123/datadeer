@@ -1,7 +1,7 @@
 <table align="center" style="text-align: center">
 	<thead>
 	<tr>
-		<th>Subscriber</th>
+<!--		<th>Subscriber</th>-->
 		<th>&#x1F4AD;Social</th>
 		<th>&#x1F4D6;Know</th>
 		<th>Game</th>
@@ -11,24 +11,24 @@
 	</thead>
 	<tbody>
 	<tr>
-		<td><a href="/golduser">Subscription Menu</a></td>
+<!--		<td><a href="/golduser">Subscription Menu</a></td>-->
 		<td><a href="/chats/pchat">Private Chat</a></td>
 		<td><a href="/directory">~Directory~</a></td>
 		<td><a href="/game/v2">Board Games</a></td>
 		<td><a href="/other/about.php">About the Server</a></td>
-		<td><a href="/other/terraria.php">Terraria</a></td>
+		<td><a href="/deercoin">DeerCoin</a></td>
 
 	</tr>
 	<tr>
-		<td><a href="/share">Share Files</a></td>
+<!--		<td><a href="/share">Share Files</a></td>-->
 		<td><a href="/chats/gchat">Group Chat</a></td>
 		<td><a href="/learn">Learn</a></td>
 		<td><a href="/game/libs">MadLibs&#8482;</a></td>
 		<td><a href="/freelance">About the Owner</a></td>
-		<td><a href="/app">App</a></td>
+		<td><a href="/other/settings.php">Settings</a></td>
 	</tr>
 	<tr>
-		<td> </td>
+<!--		<td> </td>-->
 		<td><a href="/share">File Share</a></td>
 		<td><a href="/search">Search</a></td>
 		<td>
@@ -42,7 +42,7 @@
 		<td><a href="/other/minecraft.php">Minecraft</a></td>
 	</tr>
 	<tr>
-		<td> </td>
+<!--		<td> </td>-->
 		<td><a href="/merch">Merch</a></td>
 		<td><a href="/test">Tests</a></td>
 		<td><a href="/game/v2/#tabs-3">Minesweeper</a></td>
@@ -50,12 +50,12 @@
 		<td><a href="/dognet">DogNet</a></td>
 	</tr>
 	<tr>
-		<td> </td>
+<!--		<td> </td>-->
 		<td> </td>
 		<td> </td>
 		<td><a href="/game/v2/#tabs-4">Sudoku</a></td>
-		<td><a href="https://github.com/zaners123/DataDeer.net">&#60;&#47;&#62; Source</a></td>
-		<td><a href="/other/settings.php">Settings</a></td>
+		<td><a href="https://github.com/zaners123/DataDeer">&#60;&#47;&#62; Source</a></td>
+		<td><a href="/other/terraria.php">Terraria</a></td>
 	</tr>
 	</tbody>
 </table>
@@ -64,43 +64,46 @@
 <h3 style="margin-left:32px;text-align: left" id="list"> </h3>
 <script id="script">
 	let list = [
-	["/other/aboutme.php","About the Owner"],
+	// ["/other/aboutme.php","About the Owner"],
 	["/other/about.php","About the Server"],
 	["/app","App"],
-	["/apt-mirror","Apt Mirror"],
-	["/game","Battleship"],
-	["/game","Board Games"],
+	// ["/apt-mirror","Apt Mirror"],
+	["/game/v2","Battleship"],
+	["/game/v2","Board Games"],
 	["/game/generator/baby.php","Baby Names"],
 	["/calculator","Calculator"],
+	["/deercoin/casino.php","Casino"],
+	["/deercoin","Currency"],
 	["/cp","Cyber Patriots"],
 	["/other/changelog.php","Changelog"],
 	["/chats/gchat","Chat - Group"],
 	["/chats/pchat","Chat - Private"],
-	["/game","Checkers"],
-	["/game","Chess"],
-	["/dog","Dog - The History of the Domestic Dog"],
+	["/game/v2","Checkers"],
+	["/game/v2","Chess"],
+    ["/deercoin","Deercoin"],
+    ["/dog","Dog - The History of the Domestic Dog"],
 	["/dognet","DogNet - Give me a potential dog image!"],
 	["/directory","Directory"],
-	["/filepile","File Pile"],
+	["/share","File Pile"],
 	["/game/generator/fortune.php","Fortunes"],
 	["/game/v2","Games!"],
 	["/chats/gchat","Group Chat"],
 	["/game/generator/insult.php","Insults"],
 	["/learn","Learn"],
 	["/game/libs","MadLibs&#8482;"],
-	["/merch","Merch"],
+	// ["/merch","Merch"],
 	["/other/minecraft.php","Minecraft"],
 	["/game/v2","Minesweeper"],
 	["/chats/pchat","Private Chat"],
 	["/rs/","Raspberry Sprinkler"],
 	["/directory","Recursion - Definition"],
 	["/other/share.php","Share"],
-	["/chats/schat","Secure Chat"],
+	// ["/chats/schat","Secure Chat"],
 	["/search","Search Engine (webpages and images)"],
 	["/other/settings.php","Settings"],
 	["/sewer","Sewer"],
 	["/share","Share"],
-	["https://github.com/zaners123/DataDeer.net","Source"],
+	["https://github.com/zaners123/DataDeer","Source Code"],
 	["/golduser","Subscription Menu"],
 	["/learn/tech","Tech - Learn IT"],
 	["/other/terraria.php","Terraria"],

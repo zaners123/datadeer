@@ -15,7 +15,7 @@ It's a DataDeer.net currency!
 
 <h2><a href="casino.php">Go to the casino</a></h2>
 
-<div class="leftHalf" style="border: 1px solid black">
+<div class="leftHalf">
 	<h2>Send DeerCoin</h2>
 	<h3 class="red" id="err">
 		<?php
@@ -44,7 +44,7 @@ It's a DataDeer.net currency!
 	</form>
 </div>
 
-<div class="leftHalf">
+<div class="rightHalf">
 <ol>
 	<?php
 	$board = getLeaderboard($conn);

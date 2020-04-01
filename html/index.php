@@ -37,6 +37,7 @@ if (isset($_SESSION["username"])) {
 <img src="/datadeernet.png" width="50%" height="20%">
 <div><a href="https://boinc.bakerlab.org/" class="black">Donate your computing power to fight Coronavirus!</a></div>
 <div><a href="/game/v2" class="black">WAY more Board Games! Sudoku, TicTacToe, and more!</a></div>
+<div><a href="/deercoin" class="black">Now with a currency, DeerCoin! Gamble away your DeerCoin life savings!</a></div>
 
 <?php require "../php/block/directoryLong.php";?>
 <?php require "../php/footer.php"; ?>

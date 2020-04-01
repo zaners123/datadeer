@@ -9,7 +9,7 @@
 <h1>About Data Deer</h1>
 This is an <a href="changelog.php">in-progress website</a>.<br>
 All the code on this website was made by <a href="aboutme.php">one person.</a><br>
-The site is <a href="https://github.com/zaners123/DataDeer.net">Open Source on Github</a><br>
+The site is <a href="https://github.com/zaners123/DataDeer">Open Source on Github</a><br>
 What is the purpose of this website? Mostly for me (the website owner and maintainer) learning how to program, and also to provide somewhat useful and working things, like chat.
 <hr>
 
