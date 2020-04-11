@@ -1,24 +1,22 @@
 <?php
 require "/var/www/php/lib.php";
-function getRawUnprocessed() {
-	$folder = "/var/www/dog/";
-	//if its more than 40MB, no way is it legit
-	$saveRes = saveAsset($_FILES['userfile'], $folder, 1024*1024*10);
-	if (strpos($saveRes,"ERR") !== false) exit("ERR");
-	if (preg_match("/\W/",$saveRes)) exit("ERR");
-	$filename = $folder.$saveRes;
+function getPercentDog() {
 
-	//note potentially unsafe
+	if ($_FILES["userfile"]["size"] > 1024*1024*10) exit("FILE TOO BIG");
 
 	//preprocessing the image to 150x150 with white background could help it...
-	shell_exec("convert ".escapeshellarg($filename)." -resize 150x150 -gravity center -extent 150x150 ".escapeshellarg($filename)."-small");
-	return shell_exec("java -jar /var/www/dog/dog.jar /var/www/dog/net.mln ".escapeshellarg($filename)."-small");
-}
-function getPercentDog() {
-	$out = getRawUnprocessed();
+	shell_exec("convert ".escapeshellarg($_FILES['userfile']['tmp_name'])." -resize 150x150 -gravity center -extent 150x150 ".escapeshellarg($_FILES['userfile']['tmp_name'])."-small");
+	$ret = shell_exec("java -jar /var/www/dog/dog.jar /var/www/dog/net.mln ".escapeshellarg($_FILES['userfile']['tmp_name'])."-small");
+
 	//note: matches[0] is input, matches[1] is first match, matches[2] is second match
-	preg_match("/FILTERSTART\[\[\s(.*),\s(.*)\]\]FILTEREND/",$out, $matches);
-	return $matches[1] * 100;
+	preg_match("/FILTERSTART\[\[\s(.*),\s(.*)\]\]FILTEREND/",$ret, $matches);
+	$percentDog = $matches[1] * 100;
+
+	//save dog photo... for security purposes... (or cause i wanna keep them lol)
+	$folder = ($percentDog>60)?"/var/www/dog/isdog/":"/var/www/dog/isnotdog/";
+	saveAsset($_FILES['userfile'], $folder, 1024*1024*10);
+
+	return $percentDog;
 }
 function getUsersafe() {
 	$percentDog = getPercentDog();
@@ -31,7 +29,22 @@ function getUsersafe() {
 	} else {
 		$ret = "That's not a dog.";
 	}
+
 	$confidence = round(abs($percentDog-50)*2,3);
 	$ret .= " (with $confidence% confidence)";
+
+	//main I added this in so DeerCoin comes from dog photos, haha
+	$getCoins = $percentDog > 60;
+	if ($getCoins) {
+		require_once "/var/www/php/deercoinLib.php";
+		$conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"],"userdata");
+		$success = transferCoins($conn, "dealer", $_SESSION["username"],25,"Dog Submit");
+		if ($success) {
+			$ret .= "<br>(For that dog photo, you got 25 coins!)<br>";
+		} else {
+			$ret .= "ERR unknown error!";
+		}
+	}
+
 	return $ret;
 }

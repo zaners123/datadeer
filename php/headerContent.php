@@ -31,7 +31,7 @@ if (isset($_SESSION["username"])) {
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta property="og:image" content="https://datadeer.net/datadeer.png">
-	<meta name="description" content="The site for all of your needs.">
+	<meta name="description" content="The site for all of your needs. Or at least most of them.">
 <!--	<script src="/js/snow.js"> </script>-->
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="/css/css.css"/>

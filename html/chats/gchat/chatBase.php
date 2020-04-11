@@ -6,18 +6,10 @@ require "chatLib.php";
 
 
 /**
-
- * How the table was made:
- * create table chat (id bigint not null auto_increment, username varchar(32) not null, room varchar(35) not null, text varchar(512) not null,primary key (id));
- * grant select on userdata.chat to 'website'@'localhost';
- * grant insert on userdata.chat to 'website'@'localhost';
-
  * How to add to table:
  * insert into chat (room,text) value ("general","Welcome to the General Chat!");
  * How to read table:
  * select room,text from chat;
-
-
  * */
 
 //if they specify a room

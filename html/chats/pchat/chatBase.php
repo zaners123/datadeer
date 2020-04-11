@@ -2,12 +2,6 @@
 $readOnlyDisabled = true;
 require "/var/www/php/requireSignIn.php";
 require "../chatFunc.php";
-/**
-
- * grant select on userdata.pchat to 'website'@'localhost';
- * grant insert on userdata.pchat to 'website'@'localhost';
-
- */
 
 /**This file:
  *      Reads Private SQL Chatrooms, returning the results

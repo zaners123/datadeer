@@ -39,6 +39,8 @@ function transferCoins($conn,$userFrom,$userTo,$coins,$reason) {
 		mysqli_real_escape_string($conn, $coins),
 		$reason
 	));
-	error_log(json_encode(mysqli_error_list($conn)));
+	if (count(mysqli_error_list($conn))>0) {
+		error_log("DeerCoin Transfer SQL Failed!: ".json_encode(mysqli_error_list($conn)));
+	}
 	return $res == true;
 }

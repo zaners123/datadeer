@@ -43,7 +43,7 @@ class TicTacToeBoard extends GameBoard {
 	public function takeInput() {
 		//stop input when <2 users in game
 		$conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"],"userdata");
-		if ($this->getPlayerCount($conn, $this->id)<2) return;
+		if ($this->getNumPlayers($conn, $this->id)<2) return;
 		//stop input if its not your turn
 		if (self::getActivePlayer($conn, $this->id) !== $_SESSION["username"]) return;
 		//stop input if someone already won
@@ -53,13 +53,13 @@ class TicTacToeBoard extends GameBoard {
 		if ($i!==false && $i!==null && $i>=0 && $i<9 && $this->board[$i]==self::PIECE_BLANK) {
 			$this->board[$i] = $this->role;
 			//after the player moves, the turn is toggled to the next player
-			$this->toggleTurn();
+			$this->toggleTurn($conn);
 			$this->sqlUpdateBoard();
 		}
 		mysqli_close($conn);
 	}
 
-	public static function canPlayerJoinGame($players) {
+	public function canPlayerJoinGame($conn, $players) {
 		//add them to the game
 		if ($players >= 2) return false;
 		return $players == 0 ? "X" : "O";
@@ -85,7 +85,7 @@ class TicTacToeBoard extends GameBoard {
 		return json_encode(array(
 			"state"=>$state,
 			"board"=>$this->board,
-			"players"=>$this->getPlayerCount($conn, $this->id),
+			"players"=>$this->getNumPlayers($conn, $this->id),
 			"active"=>$this->getActivePlayer($conn, $this->id)
 		));
 

@@ -43,7 +43,8 @@
 	</tr>
 	<tr>
 <!--		<td> </td>-->
-		<td><a href="/merch">Merch</a></td>
+<!--    <td><a href="/merch">Merch</a></td>-->
+		<td> </td>
 		<td><a href="/test">Tests</a></td>
 		<td><a href="/game/v2/#tabs-3">Minesweeper</a></td>
 		<td><a href="/weather">Weather</a></td>

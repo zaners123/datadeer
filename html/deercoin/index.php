@@ -11,9 +11,18 @@ $conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.i
 <h2>What's DeerCoin?</h2>
 It's a DataDeer.net currency!
 
+<h2>How do I get DeerCoin?</h2>
+You can get DeerCoin in many ways:
+<ul>
+	<li>Accounts that already existed start with 100 coins (not new accounts)</li>
+	<li>By submitting <a href="/dognet">dog photos</a></li>
+	<li>By betting in <a href="/game/v2/#tabs-7">Poker</a></li>
+	<li>By going to <a href="casino.php">The Casino</a></li>
+</ul>
+
 <h1 id="have"> </h1>
 
-<h2><a href="casino.php">Go to the casino</a></h2>
+<h2><a href="casino.php">Go to The Casino</a></h2>
 
 <div class="leftHalf">
 	<h2>Send DeerCoin</h2>
@@ -45,12 +54,13 @@ It's a DataDeer.net currency!
 </div>
 
 <div class="rightHalf">
+	<h2>Leaderboard</h2>
 <ol>
 	<?php
 	$board = getLeaderboard($conn);
 	while ($v = mysqli_fetch_assoc($board)) {
-		if ($v["u"]=="Dealer") continue;
-		echo "<li>".$v["u"]." has ".$v["coins"]." DeerCoin"."</li>";
+		if ($v["u"]=="Dealer" || $v["u"]=="deer" || $v["u"]=="username") continue;
+		echo "<li>".$v["u"]." has ".$v["coins"]." DeerCoin</li>";
 	}
 	?>
 </ol>

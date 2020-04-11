@@ -54,9 +54,9 @@ abstract class GameBoard {
 		return mysqli_num_rows(mysqli_query($conn, $query)) > 0;
 	}
 
-	protected static function getPlayers($conn, $id) {
+	protected static function getPlayerList($conn, $id) {
 		$query = sprintf(
-			"select user as c from game join game_turn using (id) where id=%s;",
+			"select user as c from game join game_turn using (id) where id=%s order by turn;",
 			mysqli_real_escape_string($conn, $id)
 		);
 		$res = mysqli_query($conn, $query);
@@ -68,20 +68,12 @@ abstract class GameBoard {
 		return $ret;
 	}
 
-	protected static function getPlayerCount($conn, $id) {
+	protected static function getNumPlayers($conn, $id) {
 		$query = sprintf(
 			"select count(*) as c from game join game_turn using (id) where id=%s;",
 			mysqli_real_escape_string($conn, $id)
 		);
 		return mysqli_fetch_assoc(mysqli_query($conn, $query))["c"];
-	}
-
-	protected static function getActivePlayer($conn, $id) {
-		$query = sprintf(
-			"select user from game_turn where id=%s and turn=0;",
-			mysqli_real_escape_string($conn, $id)
-		);
-		return mysqli_fetch_assoc(mysqli_query($conn, $query))["user"];
 	}
 
 	public static function letPlayerJoinGame($conn, $id, $role, $players) {
@@ -101,7 +93,7 @@ abstract class GameBoard {
 	 * @param $players int number of players
 	 * @return bool|string Returns role if player can join, or false if they can't
 	 */
-	public static function canPlayerJoinGame($players) {
+	public function canPlayerJoinGame($conn, $players) {
 		//add them to the game
 		if ($players >= 1) return false;
 		return "singleplayer";
@@ -117,8 +109,9 @@ abstract class GameBoard {
 
 		$isInGame = self::isInGame($conn, $id, $_SESSION["username"]);
 		if (!$isInGame) {
-			$players = $this->getPlayerCount($conn, $id);
-			$role = self::canPlayerJoinGame($players);
+			$players = $this->getNumPlayers($conn, $id);
+			$role = $this->canPlayerJoinGame($conn, $players);
+//			error_log("ROLE == ".$role);
 			if ($role) {
 				self::letPlayerJoinGame($conn, $id, $role, $players);
 			} else {
@@ -166,7 +159,6 @@ abstract class GameBoard {
 	 */
 	public abstract function getSanitizedBoard();
 
-
 	const LOST = -1;
 	const ACTIVE = 0;
 
@@ -197,16 +189,44 @@ abstract class GameBoard {
 
 	//main sql storage
 
-	protected function toggleTurn() {
-		$conn = mysqli_connect("localhost", "website", parse_ini_file("/var/www/php/pass.ini")["mysql"], "userdata");
+	protected static function getActivePlayer($conn, $id) {
+		return self::getPlayerByTurnNumber($conn, $id, 0);
+	}
+
+	protected static function getPlayerByTurnNumber($conn, $id, $turn) {
+		$turn = $turn % self::getNumPlayers($conn, $id);
+		$query = sprintf(
+			"select user from game_turn where id=%s and turn=%s;",
+			mysqli_real_escape_string($conn, $id),
+			mysqli_real_escape_string($conn, $turn)
+		);
+//		error_log($query);
+		return mysqli_fetch_assoc(mysqli_query($conn, $query))["user"];
+	}
+
+	public static function getPlayerTurnNumber($conn, $id, $user) {
+		return mysqli_fetch_assoc(mysqli_query($conn, sprintf(
+			"select turn from game_turn where id=%s and user='%s';",
+			mysqli_real_escape_string($conn, $id),
+			mysqli_real_escape_string($conn, $user)
+		)))["turn"];
+	}
+
+	protected static function kickPlayer($conn, $id, $user) {
+		echo "KICKED";
+		mysqli_query($conn, sprintf("delete from game_turn where id=%s and user='%s';",
+			mysqli_escape_string($conn, $id),
+			mysqli_escape_string($conn, $user)
+		));
+	}
+
+	protected function toggleTurn($conn) {
 		//main cycle turn
-		mysqli_query($conn, sprintf("set @c = (select count(*) from game_turn where id=%s);",
+		$players = $this->getNumPlayers($conn, $this->id);
+		mysqli_query($conn, sprintf("update game_turn set turn=(turn+1)MOD(%s) where id=%s;",
+			mysqli_escape_string($conn, $players),
 			mysqli_escape_string($conn, $this->id)
 		));
-		mysqli_query($conn, sprintf("update game_turn set turn=(turn+1)MOD(@c) where id=%s;",
-			mysqli_escape_string($conn, $this->id)
-		));
-		//		error_log(json_encode(mysqli_error_list($conn)));
 	}
 
 	/**

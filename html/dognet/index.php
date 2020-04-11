@@ -15,6 +15,13 @@
 	For best confidence, make sure the dog takes up most of the image, and the image has no filters (black & white, etc).
 </p>
 
+<p>
+	If you give me dog photos, I'll give you 25 <a href="/deercoin">DeerCoins</a>!
+	For this, the photos better be taken by you or I may revoke the coins.
+	If you have dog photos that you took that don't get counted (it has to be above 60% certainty),
+		then email "admin @ (this site)" dog photos and I'll give you DeerCoins.
+</p>
+
 <form enctype="multipart/form-data" method="post">
 	<table align="center" style="border: 2px solid black">
 		<tr>

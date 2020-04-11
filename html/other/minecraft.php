@@ -1,4 +1,4 @@
-<?php require "/var/www/php/header.php" ?>
+<?php require "/var/www/php/headerNoSignin.php" ?>
 	<title>Minecraft</title>
 <?php require "/var/www/php/bodyTop.php"; ?>
 <div class="c">

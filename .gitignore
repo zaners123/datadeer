@@ -28,6 +28,7 @@
 *.cur
 *.exe
 *.gif
+*.gz
 *.hex
 *.i*86
 *.ico
@@ -40,10 +41,12 @@
 *.out
 *.png
 *.pdf
+*.tar
 *.unityweb
 *.x86_64
 *.server
 *.sh
 *.svg
+*.xz
 *.zip
 

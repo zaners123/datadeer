@@ -1,21 +1,16 @@
 function at(x,y) {
     return x + y*height;
 }
-function sendBoard(gametype) {
-    let data = {
-        "board": board,
-        "id": id,
-    };
 
+function sendData(gametype, data, responseFunc) {
     let urlEncodedData = "",urlEncodedDataPairs = [],name;
     // Turn the data object into an array of URL-encoded key/value pairs.
     for( name in data ) {urlEncodedDataPairs.push( encodeURIComponent( name ) + '=' + encodeURIComponent( data[name] ) );}
     urlEncodedData = urlEncodedDataPairs.join( '&' ).replace( /%20/g, '+' );
-
-
-    console.log("sent: "+board.toString());
-
     let url = "../request.php?gametype="+gametype+"&id="+boardId;
+    //testing:
+    // console.log("Sending to URL "+url);
+    // console.log(urlEncodedData);
     fetch(url, {
         method: 'POST',
         cache: 'no-cache',
@@ -25,12 +20,23 @@ function sendBoard(gametype) {
         },
         body: urlEncodedData
     }).then(function (response) {
-        response.text().then(function (newBoard) {
+        response.text().then(responseFunc);
+    });
+}
+
+function sendBoard(gametype) {
+    console.log("sent: "+board.toString());
+    sendData(gametype,
+        {
+            "board": board,
+            "id": id,
+        },
+        function (newBoard) {
             console.log("Got back \"" + newBoard + "\"");
             let resp = JSON.parse(newBoard);
-            respondToSendBoard(resp);
-        });
-    });
+            respondToSendData(resp);
+        }
+    );
 }
 
 function getBoardNode(i) {

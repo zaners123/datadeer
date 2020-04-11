@@ -71,10 +71,6 @@ if ($verifyResult->success != true) {
 //make account
 
 
-/**
-grant select on userdata.accounts to 'website'@'localhost';
-grant insert on userdata.accounts to 'website'@'localhost';
- */
 $conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"]);
 mysqli_select_db($conn,"userdata");
 $query = sprintf(

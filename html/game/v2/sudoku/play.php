@@ -189,7 +189,7 @@ $boardID = $board->getID();
        }
     };
 
-    function respondToSendBoard(resp) {
+    function respondToSendData(resp) {
         if (resp["state"]!=="") {
             if (resp["state"]==="DONE") {
                 boardHolder.innerHTML = "Won!<br>Time: " + resp["state"].substr(4) + " seconds<br><br><a href='..'>Go Back</a>";

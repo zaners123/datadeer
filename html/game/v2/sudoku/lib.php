@@ -125,13 +125,11 @@ class SudokuBoard extends GameBoard {
 		$this->sqlInsertBoard();
 	}
 
-	public function takeInput($input) {
+	public function takeInput() {
 		//input is entire client board client[0..n]
-		$clBoard = $input["board"];
+		$clBoard = $_POST["board"];
 		//store new client sudoku board
-
 //		error_log($clBoard);
-
 		if (!preg_match("/^[0-9 ]{81}$/",$clBoard)) exit("Bad board");
 //		error_log(json_encode($this->board));
 		$this->board["client"] = $clBoard;
@@ -139,9 +137,6 @@ class SudokuBoard extends GameBoard {
 		$won = $this->board["answer"]==$this->board["client"];
 //		$won = true;
 		//todo test if board is both a valid board and contains the original board (incase given board had two solutions)
-
-
-
 		if ($won) $this->setGameToWon();
 		//update changes
 		$this->sqlUpdateBoard();
