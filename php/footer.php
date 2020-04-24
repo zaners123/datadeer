@@ -1,4 +1,4 @@
-<footer class="foot c"><span class="white"><?php
+<footer class="foot c"><div class="white"><?php
 $bottomText = [
 	"Make sure you watch out for datadeer on the road",
 	"Wow, I need a graphic designer...",
@@ -18,9 +18,32 @@ $bottomText = [
 	"Stop being reasonable, this is the Internet!",
 	"There's no place like ".$_SERVER['REMOTE_ADDR'],
 	"A bit of beauty",
+	"Now with two deers!",
 ];
-$bottomText = ["Now with two deers"];
-echo $bottomText[array_rand($bottomText, 1)];
-?></span></footer>
+
+$disclaimers = [
+	"Do not add toner",
+	"Do not bend, fold, mutilate, or spindle",
+	"Do not drive or operate heavy machinery while using this product",
+	"Do not use while operating a motor vehicle or heavy equipment ",
+	"Do not eat",
+	"Do not put in mouth",
+	"Do not turn upside down",
+	"Do not prepare in a toaster oven",
+	"Contents may be hot after heating",
+	"Contents may be Fragile",
+	"Do not use in shower",
+	"Do not use if seal is broken ",
+	"Do not write below this line<hr>",
+	"Dog not included",
+	"Harmful if swallowed",
+	"May cause excitability",
+	"This side up",
+	"This face up",
+];
+?>
+<div><?=$bottomText[array_rand($bottomText, 1)];?></div>
+<div class="red"><?=$disclaimers[array_rand($disclaimers, 1)];?></div>
+</footer>
 </body>
 </html>

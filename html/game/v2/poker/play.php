@@ -99,6 +99,13 @@ $boardID = $board->getID();
         //testing print board
         // document.getElementById("boardViewer").innerHTML = resp;
 		board = JSON.parse(resp);
+
+        if (board["status"].startsWith("Not enough players")) {
+            boardViewerE.innerHTML = "Not Enough Players... Get your friends to join!";
+            return;
+        }
+
+
         //tell user the call
         if (lastCall===null) lastCall = board["call"];
         callStatE.innerHTML = "Call of " + board["call"] + " DeerCoin made by " + player(board["callFrom"]);

@@ -518,9 +518,11 @@ class PokerBoard extends GameBoard {
 	*/
 	public function endGame($conn) {
 
-		//save board to be reviewed later by players
-		$lastBoard = $this->board;
-		unset($lastBoard["lastBoard"]);
+		if (isset($this->board)) {
+			//save board to be reviewed later by players
+			$lastBoard = $this->board;
+			if (isset($lastBoard["lastBoard"])) unset($lastBoard["lastBoard"]);
+		}
 
 		//give winning player(s) dived pots
 		if (isset($this->board["pot"]) && count($this->board["pot"])>0) {
