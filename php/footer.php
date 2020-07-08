@@ -1,5 +1,5 @@
 <footer class="foot c"><div class="white"><?php
-$bottomText = [
+$bottomTexts = [
 	"Make sure you watch out for datadeer on the road",
 	"Wow, I need a graphic designer...",
 	"Making a website is hard",
@@ -41,9 +41,13 @@ $disclaimers = [
 	"This side up",
 	"This face up",
 ];
+$bottomText = $bottomTexts[array_rand($bottomTexts, 1)];
+$disclaimer = $disclaimers[array_rand($disclaimers, 1)];
+//$bottomText = $bottomTexts[14];
+//$disclaimer = $disclaimers[13];
 ?>
-<div><?=$bottomText[array_rand($bottomText, 1)];?></div>
-<div class="red"><?=$disclaimers[array_rand($disclaimers, 1)];?></div>
+<div><?=$bottomText?></div>
+<div class="red"><?=$disclaimer?></div>
 </footer>
 </body>
 </html>
