@@ -1,5 +1,7 @@
-.idea
 #big files and media, etc. Oh also a bunch of good jokes are here.
+/21
+/69
+/420
 /dog
 /libs
 /html/awoo
@@ -29,7 +31,6 @@
 *.cur
 *.exe
 *.gif
-*.gz
 *.hex
 *.i*86
 *.ico
@@ -42,7 +43,6 @@
 *.out
 *.png
 *.pdf
-*.tar
 *.unityweb
 *.x86_64
 *.server

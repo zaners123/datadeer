@@ -19,9 +19,18 @@ $bottomTexts = [
 	"There's no place like ".$_SERVER['REMOTE_ADDR'],
 	"A bit of beauty",
 	"Now with two deers!",
+
+	"I came here to kick butt and say no more than eighteen words, and I'm all out of ",
+	"I came here to kick butt and say no more than eighteen words, and I'm all out of ",
+	"I came here to kick butt and say no more than eighteen words, and I'm all out of ",
+
 ];
 
 $disclaimers = [
+	"Do not drink and DataDeer",
+	"Do not drink and DataDeer",
+	"Do not drink and DataDeer",
+
 	"Do not add toner",
 	"Do not bend, fold, mutilate, or spindle",
 	"Do not drive or operate heavy machinery while using this product",
@@ -47,7 +56,7 @@ $disclaimer = $disclaimers[array_rand($disclaimers, 1)];
 //$disclaimer = $disclaimers[13];
 ?>
 <div><?=$bottomText?></div>
-<div class="red"><?=$disclaimer?></div>
+<div style="color: #f88;"><?=$disclaimer?></div>
 </footer>
 </body>
 </html>

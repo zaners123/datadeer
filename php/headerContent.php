@@ -2,7 +2,7 @@
 //owo entire page here
 if (isset($_SESSION["username"])) {
 	require_once "/var/www/php/couch.php";
-	$doc = getDoc("profile", $_SESSION["username"], $blankDefault);
+	$doc = getDoc("profile", $_SESSION["username"], array('x'=>'x'));
 //	if (true) {
 	if (isset($doc["owoify"]) && $doc["owoify"] == "true") {
 		$owoify = true;
@@ -32,22 +32,15 @@ if (isset($_SESSION["username"])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta property="og:image" content="https://datadeer.net/datadeer.png">
 	<meta name="description" content="The site for all of your needs. Or at least most of them.">
-<!--	<script src="/js/snow.js"> </script>-->
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="/css/css.css"/>
 <?php
 if (isset($_SESSION["username"])) {
-	//main pink
 	if (isset($doc["background"]) && $doc["background"] == "true") echo '<link rel="stylesheet" type="text/css" href="/css/pink.css"/>';
-	//main dark mode
 	if (isset($doc["darkmode"]) && $doc["darkmode"] == "true") echo '<link rel="stylesheet" type="text/css" href="/css/dark.css"/>';
-	//main sickness
 	if (isset($doc["sickness"]) && $doc["sickness"] == "true") echo '<link rel="stylesheet" type="text/css" href="/css/sickness.css"/>';
-	//main mouse
 	if (isset($doc["mouse"]) && $doc["mouse"] == "true") echo '<link rel="stylesheet" type="text/css" href="/css/mouse.css"/>';
-	//main random background
 	if (isset($doc["randomback"]) && $doc["randomback"] == "true") echo "<style>body {background: rgb(".rand(175,255).",".rand(175,255).",".rand(175,255).");}</style>";
+//<script src="/js/snow.js"> </script>
+//<link rel="stylesheet" type="text/css" href="/css/christmas.css"/>
 }?>
-<!--	Merry christmas-->
-	<!--<script src="/js/snow.js"> </script>
-	<link rel="stylesheet" type="text/css" href="/css/christmas.css"/>-->

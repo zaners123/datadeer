@@ -20,6 +20,15 @@ if (isset($readOnlyDisabled) && isset($_SESSION["readonly"])) {
 	die("NO GUEST");
 }
 
+function getUsername() {
+	return strtolower($_SESSION["username"]);
+}
+
+/**Probably the best admin panel ever*/
+function isAdmin() {
+	return getUsername()=="deer";
+}
+
 //Checks if the session username is not set, empty, or has 0 length.
 if (
 	//username not set

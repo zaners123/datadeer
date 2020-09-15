@@ -4,8 +4,6 @@
 //blank for game matches
 $blankDefault = array(
 	'x'=>'x'
-	//would hold
-	// 'user'=>'gameKey'
 );
 
 //main removes the _id and _ref variables from the JSON
@@ -41,7 +39,11 @@ function getDocUnsafe($folder,$loc) {
 	return $ret;
 }
 //main get any doc, but if it doesn't exist, make it and set it to default
-function getDoc($folder,$loc,$default) {
+function getDoc($folder,$loc = null,$default = null) {
+
+	if ($loc==null) $loc=strtolower($_SESSION["username"]);
+	if ($default==null) $default=array('x'=>'x');
+
 	$loc = strtolower($loc);
 
 	$response = getDocUnsafe($folder,$loc);
@@ -54,6 +56,7 @@ function getDoc($folder,$loc,$default) {
 }
 //main set any doc. The doc should be gotten first.
 function setDoc($folder,$loc,$doc) {
+
 	$loc = strtolower($loc);
 
 	$curl = curl_init();
