@@ -4,7 +4,7 @@
 Go to URL: http://freemusicarchive.org/ if you wanna know where these songs are from. MP3 info has more info, such as copyright, on current song
 -->
 <?php
-if (isset($doc["music"]) && $doc["music"] == "true") {
+/*if (isset($doc["music"]) && $doc["music"] == "true") {
 	function glob_recursive($pattern, $flags = 0){
 		$files = glob($pattern, $flags);
 		foreach (glob(dirname($pattern).'/*', GLOB_ONLYDIR|GLOB_NOSORT) as $dir)
@@ -13,7 +13,8 @@ if (isset($doc["music"]) && $doc["music"] == "true") {
 	}
 	$songs = glob_recursive("themesongs/*.mp3");
 	echo '<audio src="'.$songs[array_rand($songs)].'" autoplay="autoplay" loop="loop"> </audio>';
-}?>
+}*/
+?>
 <nav class="menu">
 	<ul class="clearfix">
 		<li><a href="/">&#129420;</a></li>

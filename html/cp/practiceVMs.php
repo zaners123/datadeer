@@ -1,7 +1,7 @@
 <?php require "/var/www/php/headerNoSignin.php"; ?>
 	<title id="title">Cyber Patriots</title>
 	<style>div{margin-bottom: 24px;}</style>
-<?php require "/var/www/bodyTop.php"; ?>
+<?php require "/var/www/php/bodyTop.php"; ?>
 	<a style="display: block; text-align: left;font-size: 32px;" href=".">Back</a>
 	<h1>Practice VMs</h1>
 

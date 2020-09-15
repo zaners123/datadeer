@@ -4,7 +4,7 @@
 	div{margin-bottom: 24px;}
 	section{margin-left: 32px;}
 </style>
-<?php require "/var/www/bodyTop.php"; ?>
+<?php require "/var/www/php/bodyTop.php"; ?>
 <div style="text-align: left">
 <a style="display: block; text-align: left;font-size: 32px;" href=".">Back</a>
 <h1>Local Security Policy</h1>
