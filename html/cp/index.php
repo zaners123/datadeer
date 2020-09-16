@@ -1,7 +1,7 @@
 <?php require "/var/www/php/headerNoSignin.php"; ?>
 	<title id="title">Cyber Patriots</title>
 	<style>div{margin-bottom: 32px;}</style>
-<?php require "/var/www/bodyTop.php"; ?>
+<?php require "/var/www/php/bodyTop.php"; ?>
 <h1>Cyber Patriot Resources</h1>
 <h4>Because DataDeer.net supports open source and freedom of information, here's a bunch of useful things for those in <a href="https://www.uscyberpatriot.org/">Cyber Patriots</a></h4>
 

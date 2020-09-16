@@ -15,7 +15,7 @@ if (!$err) $err=http_response_code();
 	If you load more than one page per second, the site gets scared!
 	Wait 5 seconds, then refresh the page to continue.";
 	} else if ($err==404) {
-		echo "Awwww page not found. Lemme know if a link broke";
+		echo "Awwww page not found. Lemme know if a link broke.<br>";
 	}?>
 </h2>
 <a href="https://http.cat"><img alt="cat" src="/err/<?=$err?>.jpg"></a>

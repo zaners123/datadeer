@@ -46,7 +46,7 @@
 	    <li>2/25/19 - The site's .onion address is now <a href="http://datadeerzxn36mti.onion">datadeerzxn36mti.onion</a></li>
 	    <li>2/25/19 - The site is also a mobile minecraft server, for phones and tablets!</li>
 	    <li>2/24/19 - <a href="/other/minecraft.php">Minecraft server</a> spawn remade</li>
-	    <li>2/24/19 - <a href="/user/edit.php">User accounts</a>, along with icons, can be made.</li>
+	    <li>2/24/19 - User accounts, along with icons, can be made.</li>
 	    <li>2/20/19 - You can have your own <a href="/todo">Todo list</a></li>
 	    <li>2/20/19 - <a href="/finance">Finance</a> managing is available, for charting.</li>
 	    <li>2/17/19 - <a href="/game/libs">MadLibs&#8482;</a></li>

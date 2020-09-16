@@ -34,18 +34,22 @@ if (isset($_SESSION["username"])) {
 	</style>
 <?php require "/var/www/php/bodyTop.php"; ?>
 <!--main front page for signed in peeps-->
-<img src="/datadeernet.png" width="50%" height="20%">
-<div><a class="black" href="https://boinc.bakerlab.org/">Donate your computing power to fight Coronavirus!</a></div>
-<div><a class="black" href="https://github.com/zaners123/datadeer">Check out this site's source code!</a></div>
-<div><a class="black" href="/game/v2">WAY more Board Games! Sudoku, TicTacToe, and more!</a></div>
-<div><a class="black" href="/deercoin">Now with a currency, DeerCoin! Gamble away your DeerCoin life savings!</a></div>
+<marquee scrolldelay="15" truespeed="true">
+	<img src="/datadeernet.png" alt="site logo" width="15%">
+</marquee>
+<h1><a href="/lifestream">Stream your life to DataDeer!</a></h1>
+<?php require "../php/block/directorySimple.php";?>
+<hr>
+Can't find what you're looking for? Try the <a href="/directory">Directory</a>!
+<div style="width='100%'; text-align: center">
+<!--	<iframe src="https://www.cdc.gov/std/widgets/widget-2017-1.html" name="STDwidget 2017-1" id="STDwidget 2017-1" title="Widget for finding an STD testing site." frameborder="0" scrolling="no" height="250" width="250" marginheight="0" marginwidth="0" style="border: 1px solid #ccc; display:block;"> Find an STD testing site near you.</iframe>-->
+	<iframe src="https://www.dhs.gov/ntas/" name="National Terrorism Advisory System" title="National Terrorism Advisory System" width="220" height="220" scrolling="no" frameborder="0" seamless border="0"></iframe>
+	<iframe src="https://www2.fbi.gov/widgets/widget_missing.htm" width="220" height="220" frameborder="0"></iframe>
+</div>
 
-<?php require "../php/block/directoryLong.php";?>
 <?php require "../php/footer.php"; ?>
 <?php
-
 } else {
-
 //LOAD THE SIGN IN PAGE
 require "../php/headerNoSignin.php"; ?>
 <title>Data Deer</title>
@@ -70,12 +74,16 @@ require "../php/headerNoSignin.php"; ?>
 	</h4>
 </div>
 <div class="home">
-<!-- Normal form signin-->
-	<div style="font-size: 150%; text-align: center;"><a href="https://boinc.bakerlab.org/" class="black notify">Donate your computing power to fight Coronavirus!</a><br><br></div>
+	<!--<div style="font-size: 150%; text-align: center;">
+		<a href="https://datadeer.net/lifestream " class="black notify">DataDeer LifeStream</a>
+		<br><br>
+	</div>-->
+
+
 	<form id="signinForm" name="signin" action="/signin.php" method="POST">
 		<h3 style="line-height: 125%">
-			Username:<input class="homein" placeholder="Username" name="username" id="username" type="text" title="username" required="required"><br>
-			&nbsp;Password:<input class="homein" placeholder="Password" name="password" id="password" type="password" title="password" required="required"><br>
+			<label>Username:<input class="homein" placeholder="Username" name="username" id="username" type="text" title="username" required="required"><br></label>
+			<label>&nbsp;Password:<input class="homein" placeholder="Password" name="password" id="password" type="password" title="password" required="required"><br></label>
 			<?php
 			//if using the app, default "Remember Me" to true
 			if (isset($_GET["rem"])) {?>

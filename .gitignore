@@ -1,5 +1,8 @@
 #big files and media, etc. Oh also a bunch of good jokes are here.
 /21
+21
+video-js
+videojs
 /69
 /420
 /dog
@@ -28,6 +31,7 @@
 *.ini
 # not-code files
 *.app
+*.apk
 *.cur
 *.exe
 *.gif
@@ -38,7 +42,9 @@
 *.jar
 *.jpeg
 *.jpg
+*.mp3
 *.mp4
+*.odp
 *.ogg
 *.out
 *.png

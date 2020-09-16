@@ -128,8 +128,11 @@ body {
     line-height: 1.2;
 }
 
+* {
+    font-family: "Calibri", sans-serif;
+}
+
 html, body {
-    /*Apparently, browsers by default add a padding and margin...*/
     margin: 0;
     padding: 0;
     border: 0;

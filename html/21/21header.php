@@ -2,7 +2,7 @@
 require_once "/var/www/php/requireSignIn.php";
 require_once "/var/www/php/couch.php";
 $doc = getDoc("profile",$_SESSION["username"],$blankDefault);
-if (isset($_POST["adult"]) && strtolower($_POST["adult"])==="i am old enough") {
+if (isset($_POST["adult"]) && strtolower($_POST["adult"])===parse_ini_file("/var/www/php/pass.ini")) {
 	$doc["adult"] = isset($_POST["adult"])?"true":"false";
 	setDoc("profile",$_SESSION["username"],$doc);
 }
@@ -35,7 +35,7 @@ if (isset($doc["adult"])) {
 		This contains nasty stuff. Cuss words. Opinions. Or worse, politics! Don't go in here if you don't want to.
 	</p>
 	<p>
-		Type "I AM OLD ENOUGH" in The Box to continue.
+		Type the password I gave you in The Box to continue.
 	</p>
 	<p>
 		<input type="text" name="adult" placeholder="The Box">

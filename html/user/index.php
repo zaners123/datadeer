@@ -1,14 +1,19 @@
-<?php require "/var/www/php/header.php"; ?>
-	<title><?php echo $_GET["user"]?> User Profile</title>
+<?php
+require "/var/www/php/header.php";
+$user = $_GET["user"];
+$user = preg_replace("/[^a-zA-Z0-9]/","",$_GET["user"]);
+
+?>
+	<title><?php echo $user?> User Profile</title>
 <?php require "/var/www/php/bodyTop.php"; ?>
 <h1 id="frame" style="text-align: center">
-	User Info <?php if (strtolower($_SESSION["username"])===strtolower($_GET["user"])) {echo "<a href='edit.php'>EDIT</a>";}?><br>
-	User - <?php echo $_GET["user"]?>
+	User Info<br>
+	User - <?php echo $user?>
 	<hr>
 	<span id="icon"></span><br>
 	<span id="biography"></span><br>
 	<br>
-	<a href="/chats/pchat/chatroom.php?user=<?php echo $_GET["user"]?>" id="message">Private Message <?php echo $_GET["user"]?></a><br>
+	<a href="/chats/pchat/chatroom.php?user=<?php echo $user?>" id="message">Private Message <?php echo $user?></a><br>
 </h1>
 <script>
     function urldecode(str) {
@@ -36,12 +41,12 @@
 		 */
 		require_once "/var/www/php/couch.php";
 		$prof = array(
-			"username"=>$_GET["user"],
+			"username"=>$user,
 			"biography"=>"",
 			//a 160x160 PNG, blank by default
 			"icon"=>"",
 		);
-		echo "'".json_encode(sanitiseDoc(getDoc("profile",$_GET["user"],$prof)))."'";?>);
+		echo "'".json_encode(sanitiseDoc(getDoc("profile",$user,$prof)))."'";?>);
 	if (info["err"]==="yeah") {
 	    document.getElementById("frame").innerHTML="Unknown User<br>or<br>The User Does Not Have a Profile";
 	} else {
