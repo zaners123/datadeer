@@ -1,7 +1,6 @@
-<?php require "/var/www/php/headerNoSignin.php"; ?>
+<?php require "/var/www/php/header.php"; ?>
 	<title>DogNet</title>
 <?php require "/var/www/php/bodyTop.php"; ?>
-
 <h1>DogNet</h1>
 <h2>The DataDeer.net Artificial Intelligence</h2>
 <p>

@@ -40,7 +40,7 @@ function getUsersafe() {
 		$conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"],"userdata");
 		$success = transferCoins($conn, "dealer", $_SESSION["username"],25,"Dog Submit");
 		if ($success) {
-			$ret .= "<br>(For that dog photo, you got 25 coins!)<br>";
+			$ret .= "<br>For that dog photo, you got 25 coins!<br>";
 		} else {
 			$ret .= "ERR unknown error!";
 		}

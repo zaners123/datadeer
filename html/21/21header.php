@@ -35,7 +35,7 @@ if (isset($doc["adult"])) {
 		This contains nasty stuff. Cuss words. Opinions. Or worse, politics! Don't go in here if you don't want to.
 	</p>
 	<p>
-		Type the password I gave you in The Box to continue.
+		Type the code into The Box to continue.
 	</p>
 	<p>
 		<input type="text" name="adult" placeholder="The Box">

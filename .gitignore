@@ -15,20 +15,18 @@ videojs
 /html/fanfiction
 /html/fanfic
 /html/gay
+/html/gold/braintree-php-3.39.0
 /html/givememalware
 /html/owo.html
 /html/porn
 /html/pranked
 /html/secret
+/html/themesongs
 /html/thisdoesntexist
 /html/water
 /html/whyareyoureadingthis
 /share
 /subonly
-#external libraries
-/html/gold/braintree-php-3.39.0
-#important
-*.ini
 # not-code files
 *.app
 *.apk
@@ -38,10 +36,12 @@ videojs
 *.hex
 *.i*86
 *.ico
+*.ini
 *.iso
 *.jar
 *.jpeg
 *.jpg
+*.min.js
 *.mp3
 *.mp4
 *.odp
