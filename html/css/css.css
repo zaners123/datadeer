@@ -124,7 +124,10 @@ Shows if it is at least 1400x1300*/
 /*Post screen sizes*/
 body {
     text-align: center;
+
     background: #eafffb;
+    background: radial-gradient(circle, #c0ffee 0%, #afe1c7 33%, #82c3ae 66%, #54a698 100%/*, #128983 66%, #006c71 100%*/);
+
     line-height: 1.2;
 }
 

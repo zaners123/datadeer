@@ -2,27 +2,25 @@
 	<thead>
 	<tr>
 		<th>&#x1F4AD;Social</th>
-		<th>&#x1F4D6;Know</th>
+		<th>&#x1F4D6;Knowledge</th>
 		<th>Game</th>
-		<th>About</th>
-		<th>&#x1F527;Services</th>
 	</tr>
 	</thead>
 	<tbody>
 	<tr>
 		<td><a href="/chats/pchat">Private Chat</a></td>
-		<td><a href="/directory">~Directory~</a></td>
+		<td><details><summary>About</summary>
+                <a href="/other/about.php">About the Server</a><br>
+                <a href="/freelance">About the Owner</a><br>
+                <a href="https://github.com/zaners123/DataDeer">&#60;&#47;&#62; Source</a><br>
+                <a href="/other/changelog.php">Changelog</a><br>
+            </details><!--<a href="/directory">~Directory~</a>--> </td>
 		<td><a href="/game/v2">♟️️️Board Games</a></td>
-		<td><a href="/other/about.php">About the Server</a></td>
-		<td><a href="/deercoin">DeerCoin</a></td>
-
 	</tr>
 	<tr>
 		<td><a href="/chats/gchat">Group Chat</a></td>
 		<td><a href="/learn">Learn</a></td>
 		<td><a href="/game/libs">MadLibs&#8482;</a></td>
-		<td><a href="/freelance">About the Owner</a></td>
-		<td><a href="/other/settings.php">Settings</a></td>
 	</tr>
 	<tr>
 		<td><a href="/share">📁File Share</a></td>
@@ -34,22 +32,26 @@
 				<a href="/game/generator/insult.php">Insults</a>
 			</details>
 		</td>
-		<td><a href="/other/changelog.php">Changelog</a></td>
-		<td><a href="/other/minecraft.php">Minecraft</a></td>
+		<td> </td>
 	</tr>
 	<tr>
 		<td> </td>
 		<td><a href="/test">Tests</a></td>
-		<td><a href="/game/v2/#tabs-3">Minesweeper</a></td>
-		<td><a href="/weather">Weather</a></td>
-		<td><a href="/dognet">DogNet</a></td>
+		<td><a href="/deercoin">DeerCoin</a></td>
 	</tr>
 	<tr>
 		<td> </td>
 		<td><a href="/lifestream">🗺️LifeStream</a></td>
-		<td><a href="/game/v2/#tabs-4">Sudoku</a></td>
-		<td><a href="https://github.com/zaners123/DataDeer">&#60;&#47;&#62; Source</a></td>
-		<td><a href="/other/terraria.php">Terraria</a></td>
+		<!--<td><details><summary>Servers</summary>
+                <a href="/other/minecraft.php">Minecraft</a><br>
+                <a href="/other/terraria.php">Terraria</a><br>
+            </details></td>-->
+		<td><a href="/dognet">DogNet</a></td>
 	</tr>
+    <tr>
+        <td> </td>
+        <td><a href="/weather">Weather</a></td>
+        <td> </td>
+    </tr>
 	</tbody>
 </table>

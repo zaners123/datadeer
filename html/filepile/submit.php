@@ -61,7 +61,7 @@ if (isset($_FILES["userfile"])) {
 	} else {
 		//save info in doc
 		setDoc("share",$_SESSION["username"],$doc);
-		header("Location: /share/");
+		header("Location: /share/upload.php");
 	}
 } else {
 	echo "error no file. This could be because you forgot to select a file, or your file is much to big";

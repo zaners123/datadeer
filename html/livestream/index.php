@@ -13,7 +13,7 @@
 			max-height:100%;
 		}
 	</style>
-	<title>(Enable Autoplay) Datadeer Livestream</title>
+	<title>(Enable Autoplay) DataDeer Livestream</title>
 </head>
 <body>
 <pre><?php

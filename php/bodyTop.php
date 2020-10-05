@@ -15,7 +15,8 @@ if (isset($doc["music"]) && $doc["music"] == "true") {
 ?>
 <nav class="menu">
 	<ul class="clearfix">
-		<li><a href="/">&#129420;</a></li>
+<!--		<li><a href="/">&#129420;</a></li>-->
+		<li><a href="/"><img src="/favicon.ico" alt="&#129420;"></a></li>
 		<li><a href="/">Home</a></li>
 		<li class="onlyOnBig">
 			<a href="/chats/pchat">New <span class="arrow">▼</span></a>

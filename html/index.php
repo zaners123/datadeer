@@ -1,14 +1,10 @@
 <?php
-
 require "../php/httpHeader.php";
-
 session_start();
-
 //remember user
 if (!isset($_SESSION["username"])) {
 	require "../php/isRemembered.php";
 }
-
 //main LOAD THE WELCOME PAGE
 if (isset($_SESSION["username"])) {
 	require "../php/header.php"; ?>
@@ -21,6 +17,9 @@ if (isset($_SESSION["username"])) {
 			font-weight: bold;
 			border-bottom: 2px solid #000;
 		}
+        a {
+            color:#000;
+        }
 		td {
 			font-weight: bold;
 			padding: 5px 10px 5px 10px;
@@ -34,19 +33,18 @@ if (isset($_SESSION["username"])) {
 	</style>
 <?php require "/var/www/php/bodyTop.php"; ?>
 <!--main front page for signed in peeps-->
-<marquee scrolldelay="15" truespeed="true">
-	<img src="/datadeernet.png" alt="site logo" width="15%">
-</marquee>
-<h1><a href="/lifestream">Stream your life to DataDeer!</a></h1>
+<!--<marquee scrolldelay="15" truespeed="true">-->
+<img src="/datadeernet.png" alt="site logo" width="25%">
+<!--</marquee>-->
+<h1><?php require '../php/block/somethingToDo.php';?></h1>
 <?php require "../php/block/directorySimple.php";?>
 <hr>
 Can't find what you're looking for? Try the <a href="/directory">Directory</a>!
-<div style="width='100%'; text-align: center">
-<!--	<iframe src="https://www.cdc.gov/std/widgets/widget-2017-1.html" name="STDwidget 2017-1" id="STDwidget 2017-1" title="Widget for finding an STD testing site." frameborder="0" scrolling="no" height="250" width="250" marginheight="0" marginwidth="0" style="border: 1px solid #ccc; display:block;"> Find an STD testing site near you.</iframe>-->
+<!--<div style="width='100%'; text-align: center">
+	<iframe src="https://www.cdc.gov/std/widgets/widget-2017-1.html" name="STDwidget 2017-1" id="STDwidget 2017-1" title="Widget for finding an STD testing site." frameborder="0" scrolling="no" height="250" width="250" marginheight="0" marginwidth="0" style="border: 1px solid #ccc; display:block;"> Find an STD testing site near you.</iframe>
 	<iframe src="https://www.dhs.gov/ntas/" name="National Terrorism Advisory System" title="National Terrorism Advisory System" width="220" height="220" scrolling="no" frameborder="0" seamless border="0"></iframe>
 	<iframe src="https://www2.fbi.gov/widgets/widget_missing.htm" width="220" height="220" frameborder="0"></iframe>
-</div>
-
+</div>-->
 <?php require "../php/footer.php"; ?>
 <?php
 } else {
@@ -59,17 +57,13 @@ require "../php/headerNoSignin.php"; ?>
 <div class="hits">
 	<h4 style="line-height: 125%">
 		More than 200 users!<br>
-
 		<?php
 		require_once "/var/www/php/couch.php";
 		$doc = json_decode(getDocUnsafe("hits","souls"),true);
 		$srcIP = $_SERVER["REMOTE_ADDR"];
 		$doc["ip"][$srcIP] = "1";
-
 		setDoc("hits","souls",$doc);
 		echo "Souls: ".sizeof($doc["ip"])."<br>";
-
-
 		?>
 	</h4>
 </div>
@@ -78,8 +72,6 @@ require "../php/headerNoSignin.php"; ?>
 		<a href="https://datadeer.net/lifestream " class="black notify">DataDeer LifeStream</a>
 		<br><br>
 	</div>-->
-
-
 	<form id="signinForm" name="signin" action="/signin.php" method="POST">
 		<h3 style="line-height: 125%">
 			<label>Username:<input class="homein" placeholder="Username" name="username" id="username" type="text" title="username" required="required"><br></label>

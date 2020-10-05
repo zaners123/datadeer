@@ -6,13 +6,9 @@
 	<br><br>
 	Contact our Merch Man
 	<br><a href="mailto:daniel@datadeer.net"><img width="4%" src="danhat.png">daniel@datadeer.net<img width="4%" src="danhat.png"></a>
-
 	<br><br>
-
-	More than 30 Purchases! Adding Paypal soon.
-
+	More than 30 Purchases!
 	<br><br>
-
 	<table>
 		<tr>
 			<td><img src="pen.png"></td>

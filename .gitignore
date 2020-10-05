@@ -1,8 +1,8 @@
 #big files and media, etc. Oh also a bunch of good jokes are here.
 /21
-21
-video-js
-videojs
+video-js*
+videojs*
+leaflet*
 /69
 /420
 /dog
@@ -37,6 +37,7 @@ videojs
 *.i*86
 *.ico
 *.ini
+*.iml
 *.iso
 *.jar
 *.jpeg
@@ -54,6 +55,7 @@ videojs
 *.server
 *.sh
 *.svg
+*.xml
 *.xz
 *.zip
 

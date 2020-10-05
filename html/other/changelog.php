@@ -8,6 +8,7 @@
 	<br>
     Changes:
     <ul>
+        <li>10/03/20 - The changelog is always out of date, but at least the site has <a href="/merch">Merch</a>!</li>
 	    <li>3/26/20 - The site is now all on Github, but in a sustainable way!</li>
 	    <li>3/25/20 - Working on adding Connect and Sudoku to the site, and cleaned the code a TON so I can put it on github</li>
 	    <li>2/18/20 - Minecraft server is now much faster thanks to <a href="https://papermc.io">papermc.io</a></li>

@@ -26,8 +26,7 @@ if (isset($doc[$filename])) {
 	unset($doc[$filename]);
 	setDoc("share",$_SESSION["username"], $doc);
 	echo "Deleted";
-	header("Location: /share/");
-
+	header("Location: /share/upload.php");
 } else {
 	echo "You do not own that file";
 }
