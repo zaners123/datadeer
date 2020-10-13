@@ -7,7 +7,7 @@
 
 <h1 style="font-size: 64px">
 <?php
-if (!isset($_POST["ans"])) header("Location: /test/index.php");
+if (!isset($_POST["ans"])) header("Location: /test/api.php");
 
 $ans = json_decode($_POST["ans"]);
 

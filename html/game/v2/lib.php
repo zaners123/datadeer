@@ -82,8 +82,8 @@ abstract class GameBoard {
 			"insert into game_turn(id,user,role,turn) values (%s,'%s','%s','%s');",
 			mysqli_real_escape_string($conn, $id),
 			mysqli_real_escape_string($conn, $_SESSION["username"]),
-			$role,
-			$players
+			mysqli_real_escape_string($conn,$role),
+			mysqli_real_escape_string($conn,$players)
 		);
 		return true == mysqli_query($conn, $query);
 	}

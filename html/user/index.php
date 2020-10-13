@@ -26,13 +26,13 @@ $user = preg_replace("/[^a-zA-Z0-9]/","",$_GET["user"]);
 		main so i'm planning on having a user profile and you can edit your user bio, from that add user icon images
 		 *
 		 * This is done in many files (as are most things on this site):
-		 *      user/index.php
+		 *      user/api.php
 		 *          You can view an account in user?q=bob
 		 *          Viewing your own account redirects you to edit.
 		 *      user/edit.php
 		 *          You can edit your account, such as your bio and icon.
 		 * The data is in CouchDB in the following format:
-		 *      For reading data (index.php):
+		 *      For reading data (api.php):
 		 *          Use a variant of getMyDoc where it asks for a username and returns ONLY ["user"]["profile"]
 		 *      For writing data (edit.php):
 		 *          Use getMyDoc and then setMyDoc as you would TO-DO or Finance

@@ -3,7 +3,7 @@
 <?php require "/var/www/php/bodyTop.php" ?>
 
 <?php
-//TODO check the username exists, if not go back to index.php
+//TODO check the username exists, if not go back to api.php
 ?>
 
 <!--Chat goes here (main body of document)-->

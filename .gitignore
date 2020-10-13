@@ -11,7 +11,6 @@ leaflet*
 /html/daniel
 /html/date
 /html/dontgohere
-/html/fbla
 /html/fanfiction
 /html/fanfic
 /html/gay
@@ -37,11 +36,13 @@ leaflet*
 *.i*86
 *.ico
 *.ini
+*.inf
 *.iml
 *.iso
 *.jar
 *.jpeg
 *.jpg
+*.msc
 *.min.js
 *.mp3
 *.mp4
