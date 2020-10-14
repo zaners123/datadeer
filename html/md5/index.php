@@ -17,10 +17,10 @@
 
     /**@param toHash true if trying to make a hash*/
 	function submitIt(toHash) {
-		document.getElementById("result").innerHTML="Getting result...<br>Please wait...";
-		let action = toHash?"toHash":"getHash";
-		let inVal = document.getElementById(action).value;
+	    let action = toHash?"toHash":"getHash";
+	    let inVal = document.getElementById(action).value;
 	    let post = action+"="+inVal;
+	    document.getElementById("result").innerHTML=(toHash?("Hashing "+inVal+"..."):("Decrypting '"+inVal+"'...<br>This can take around 5-10 seconds..."))+"<br>Please wait...";
 		fetch("api.php?"+post).then(function (response) {
 		    response.text().then(function (jsonStr) {
 			    let json = JSON.parse(jsonStr);
@@ -48,12 +48,12 @@
 <h1>MD5 hash stuff!</h1>
 <div id="result"> </div>
 <form class="formbox" style="float: left" method="post" onsubmit="return submitTo()">
-    <label><h1>Get MD5 hash:</h1><input autocomplete="off" id="toHash" type="text" name="toHash" placeholder="To Hash, such as 'potatoes'"></label>
+    <label><h1>Do MD5 hash:</h1><input autocomplete="off" id="toHash" type="text" name="toHash" placeholder="To Hash, such as 'potatoes'"></label>
     <input class="space" type="submit" value="Hash">
 </form>
 
 <form class="formbox" style="float: right" method="post" onsubmit="return submitGet()">
-    <label><h1>Undo MD5 hash:</h1><input autocomplete="off" id="getHash" type="text" name="getHash" placeholder="To Crack, such as 'bfaa8063e3a5067df30a18c75f51d4b9'"></label>
+    <label><h1>Decrypt/Crack MD5 hash:</h1><input autocomplete="off" id="getHash" type="text" name="getHash" placeholder="To Decrypt, such as 'bfaa8063e3a5067df30a18c75f51d4b9'"></label>
     <input class="space" type="submit" value="Undo">
 </form>
 
