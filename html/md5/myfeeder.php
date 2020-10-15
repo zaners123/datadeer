@@ -7,22 +7,14 @@ $alphanumericPlus = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVW
 $lowercase = 'abcdefghijklmnopqrstuvwxyz';
 
 $setToUse = $alphanumericPlus;
-$length = 3;
-exit();
+$length = 2;
+//exit();
 
 //start on clean slate?
 //mysqli_query($conn,'delete from hashes');
 //add($conn,"");
-for ($curLen=0; $curLen<$length; $curLen++) {
-    for ($char=0;$char<strlen($setToUse);$char++) {
-        $res = mysqli_query($conn, sprintf(
-            'insert ignore into hashes(`in`,`out`) select concat(`in`,"%s"),unhex(md5(concat(`in`,"%s"))) from hashes where LENGTH(`in`)=%s;',
-            $lowercase[$char],
-            $lowercase[$char],
-            $curLen
-        ));
-    }
-}
+
+feed($conn, $alphanumericPlus, 2);
 //var_dump($res->fetch_all());
 
 /*foreach (arrayPermutation($setToUse, $length) as $y) {

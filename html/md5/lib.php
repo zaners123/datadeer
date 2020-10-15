@@ -24,6 +24,27 @@ function get($conn, $hash) {
     return $sqlres->fetch_all(MYSQLI_ASSOC);
 }
 
+function feed(&$conn, $setToUse, $length) {
+    for ($curLen=0; $curLen<$length; $curLen++) {
+        for ($char=0;$char<strlen($setToUse);$char++) {
+            $query = sprintf(
+                'insert ignore into hashes(`in`,`out`) select concat(`in`,"%s"),unhex(md5(concat(`in`,"%s"))) from hashes where LENGTH(`in`)=%s;',
+                mysqli_real_escape_string($conn,$setToUse[$char]),
+                mysqli_real_escape_string($conn,$setToUse[$char]),
+                mysqli_real_escape_string($conn,$curLen)
+            );
+            $s = time();
+            $res = mysqli_query($conn,$query);
+            $s = $s - time();
+            if ($res) {
+                echo "$query took $s seconds<br>";
+            } else {
+                echo "$query failed<br>";
+            }
+        }
+    }
+}
+
 /**
  * @param string $set something like "abcdefg"
  * @param int $sizeEach something like "2" if you want all 2-letter-pairs
