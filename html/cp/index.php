@@ -8,15 +8,15 @@
 <img src="fire.png" style="float: left">
 <img src="ubuntu.png" width="20%" style="float: right">
 <div>
-	<b>Windows:</b> Hate manually doing Local Security Policy, Services, or Firewall each time? <a href="templates.php">Learn Here</a> how to automate that using templates!
+    <a class="black" href="templates.php"><b class="underline">Windows:</b> Hate manually doing Local Security Policy, Services, or Firewall each time? Learn Here how to automate that using templates!</a>
 </div>
 
 <div>
-	<b>Linux:</b> Need a quick script of basic Linux vulnerabilities? <a href="judge.php">Go Here</a> for that.
+	<a class="black" href="judge.php"><b class="underline">Linux:</b> Need a quick script of basic Linux vulnerabilities? Go Here for that.</a>
 </div>
 
 <div>
-	<b>MTA Certifications:</b> Wanna be certified in Javascript, Windows, networking, or more? <a href="Full%20MTA%20Guides.pdf">Here's a guide</a>.
+    <a class="black" href="Full%20MTA%20Guides.pdf"><b class="underline">MTA Certifications:</b> Wanna be certified in Javascript, Windows, networking, or more? Here's a guide.</div>
 </div>
 
 <div>

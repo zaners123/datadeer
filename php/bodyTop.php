@@ -15,12 +15,13 @@ if (isset($doc["music"]) && $doc["music"] == "true") {
 ?>
 <nav class="menu">
 	<ul class="clearfix">
-<!--		<li><a href="/">&#129420;</a></li>-->
-		<li><a href="/"><img src="/favicon.ico" alt="&#129420;"></a></li>
+<!--		<li><a href="/"><img src="/favicon.ico" alt="&#129420;"></a></li>-->
+		<li><a href="/"><img src="/datadeer.png" width="48px" height="48px" alt="&#129420;"></a></li>
 		<li><a href="/">Home</a></li>
 		<li class="onlyOnBig">
 			<a href="/chats/pchat">New <span class="arrow">▼</span></a>
 			<ul class="sub-menu">
+				<li><a href="/md5">MD5 Hashing</a></li>
 				<li><a href="/lifestream">LifeStream!</a></li>
 				<li><a href="/app">The App</a></li>
 				<li><a href="/dognet">Dog Net</a></li>

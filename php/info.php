@@ -1,13 +1,11 @@
 <?php
 function getDirectoryList() {
-    return [["/md5","MD5 Cracker","Decrypt MD5 hashes, such as '2aebf6c73fb73963bf8a7c2e5531de40'!"]];
-    /*return [
+    return [
         ["/other/about.php","About the Server"],
         ["/app","App"],
         ["/game/v2#tabs-2","Battleship","Play some battleship!"],
         ["/game/v2","Board Games","Play a board game"],
         ["/game/generator/baby.php","Baby Names"],
-//        ["/calculator","Calculator"],
         ["/deercoin/casino.php","Casino","Gamble away your DataDeer life savings!"],
         ["/deercoin","Currency","Invest in DeerCoin!"],
         ["/cp","Cyber Patriots"],
@@ -30,7 +28,7 @@ function getDirectoryList() {
         ["/lifestream","Lifestream"],
         ["/game/libs","MadLibs&#8482;","Play some madlibs!"],
         ["/lifestream","Map","Put yourself on the map (literally)!"],
-        ["/md5","MD5 Cracker","Decrypt MD5 hashes, such as 'f96af09d8bd35393a14c456e2ab990b6'!"]
+        ["/md5","MD5 Cracker","Decrypt MD5 hashes, such as 'f96af09d8bd35393a14c456e2ab990b6'!"],
         ["/merch","Merch","Buy our merch!"],
 //        ["/other/minecraft.php","Minecraft"],
         ["/game/v2#tabs-3","Minesweeper","Sweep some Mines!"],
@@ -50,6 +48,6 @@ function getDirectoryList() {
         ["/game/v2/#tabs-5","Tic Tac Toe","A nice game of Tic Tac Toe with a chum!"],
 //        ["/other/tor.php","Tor"," "],
         ["/21","Twenty One (No, not the band...)"," "],
-        ["/weather","Weather (In Kelvin, too!)"],
-    ];*/
+        ["/weather","Weather (In Kelvin, too!)"]
+    ];
 }

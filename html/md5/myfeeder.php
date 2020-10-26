@@ -2,21 +2,23 @@
 require_once "lib.php";
 $conn = mysqli_connect("localhost","website",parse_ini_file("/var/www/php/pass.ini")["mysql"],"md5");
 
+//start on clean slate?
+//mysqli_query($conn,'delete from hashes');
+//add($conn,"");
+
 //set_time_limit(5);
 $alphanumericPlus = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_-+=[]{}\/|;:\'",<>.?`~';
 $lowercase = 'abcdefghijklmnopqrstuvwxyz';
 
 $setToUse = $alphanumericPlus;
-$length = 2;
-//exit();
+$lenFrom = 3;
+$length = 4;
 
-//start on clean slate?
-//mysqli_query($conn,'delete from hashes');
-//add($conn,"");
+ini_set("output_buffering","off");
 
-feed($conn, $alphanumericPlus, 2);
-//var_dump($res->fetch_all());
+ob_implicit_flush();
+while (ob_get_level()) {
+    ob_end_clean();
+}
 
-/*foreach (arrayPermutation($setToUse, $length) as $y) {
-    $res = mysqli_query($conn,'insert into hashes(`in`,`out`) values ("'.$y.'",unhex("'.md5($y).'"));');
-}*/
+feed($conn, $alphanumericPlus, $length,$lenFrom);

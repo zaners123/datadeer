@@ -407,6 +407,10 @@ Formatting specific objects
     display: block;
 }
 
+.underline {
+    text-decoration: underline;
+}
+
 .err {
     font-size: 64px;
     color: #F00;

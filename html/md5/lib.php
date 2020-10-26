@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Add a string's hash to the database
  * @param $conn mysqli connection
@@ -24,20 +23,29 @@ function get($conn, $hash) {
     return $sqlres->fetch_all(MYSQLI_ASSOC);
 }
 
-function feed(&$conn, $setToUse, $length) {
-    for ($curLen=0; $curLen<$length; $curLen++) {
+function countAvailableHashes($conn) {
+    return mysqli_query($conn, "select count(*) as c from hashes;")->fetch_assoc()['c'];
+}
+
+function feed(&$conn, $setToUse, $length, $lengthStart = 0) {
+    ob_end_flush();
+    for ($curLen=$lengthStart; $curLen<$length; $curLen++) {
         for ($char=0;$char<strlen($setToUse);$char++) {
             $query = sprintf(
-                'insert ignore into hashes(`in`,`out`) select concat(`in`,"%s"),unhex(md5(concat(`in`,"%s"))) from hashes where LENGTH(`in`)=%s;',
+                'insert ignore into hashes(`in`,`out`,`length`) select concat(`in`,"%s"),unhex(md5(concat(`in`,"%s"))),%s from hashes where `length`=%s;',
                 mysqli_real_escape_string($conn,$setToUse[$char]),
                 mysqli_real_escape_string($conn,$setToUse[$char]),
+                mysqli_real_escape_string($conn,$curLen)+1,
                 mysqli_real_escape_string($conn,$curLen)
             );
+
             $s = time();
+            $c = countAvailableHashes($conn);
             $res = mysqli_query($conn,$query);
-            $s = $s - time();
+            $c = countAvailableHashes($conn) - $c;
+            $s = time() - $s;
             if ($res) {
-                echo "$query took $s seconds<br>";
+                echo "$query took $s seconds, added $c rows<br>";
             } else {
                 echo "$query failed<br>";
             }
