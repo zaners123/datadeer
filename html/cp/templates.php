@@ -13,11 +13,9 @@
 		<h1 class="center">Automating Local Security Policy, Firewall, and Services.</h1>
 
         <div class="center">
-
             <h2>
                 <a href="speed.zip">Speed.zip - for experts</a>
             </h2>
-
         </div>
 
 		<div><b>If any part of this is confusing, or you notice things that it should have been getting</b>, Email the writer at <a href="mailto:admin@datadeer.net">admin@datadeer.net</a> and I will promptly update the page.</div>
@@ -31,7 +29,7 @@
                     <li>Download, extract, and open <a href="speed.zip">speed.zip</a></li>
                     <li>Right-click "0import.bat" and click "Run as Administrator"</li>
                 </ol>
-                That's it! Also, 0import.bat is only 4 lines and 161 bytes, and all it does is edit stuff based on the other files
+                That's it! Also, 0import.bat is only 5 lines, and all it does is import the other files to your computer's settings
             </div>
         </section>
 		<section style="float:left; display: block">

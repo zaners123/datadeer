@@ -16,7 +16,7 @@ if (isset($_FILES["userfile"])) {
 	$sizeBytes = $_FILES['userfile']["size"];
 	$fileExtension = pathinfo($_FILES['userfile']["name"],PATHINFO_EXTENSION);
 
-	$doc = getDoc("share",$_SESSION["username"],$blankDefault);
+	$doc = getDoc("share");
 
 	//space used includes current file
 	$spaceUsed = $sizeBytes;

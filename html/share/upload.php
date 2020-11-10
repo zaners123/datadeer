@@ -33,8 +33,7 @@
 
 //main inform user of limit usage
 require_once "/var/www/php/subdata.php";
-
-$doc = getDoc("share",$_SESSION["username"],$blankDefault);
+$doc = getDoc("share");
 
 $spaceUsed = 0;
 foreach (sanitiseDoc($doc) as $file) {
@@ -51,7 +50,7 @@ echo "% of your limit ";
 echo '<meter min="0" max="'.$maxBits.'" low="33" high="66" optimum="0" value="'.$spaceUsed.'">You don\'t support meter</meter><br>';
 
 //used bytes
-echo ($spaceUsed)."/".($maxBits);
+echo toReadableFilesize($spaceUsed)."/".toReadableFilesize($maxBits);
 echo " bytes<br>";
 
 //based off of Jeffrey Sambells

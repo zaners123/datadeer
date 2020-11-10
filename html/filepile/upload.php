@@ -33,7 +33,7 @@
 
 //main inform user of limit usage
 require_once "/var/www/php/subdata.php";
-$doc = getDoc("share",$_SESSION["username"],$blankDefault);
+$doc = getDoc("share");
 
 $spaceUsed = 0;
 foreach (sanitiseDoc($doc) as $file) {
@@ -43,6 +43,13 @@ foreach (sanitiseDoc($doc) as $file) {
 //20GB or 50MB
 $maxBits = isSubscribed()?1024*1024*1024*20:1024*1024*50;
 
+//based off of Jeffrey Sambells
+function toReadableFilesize($bytes) {
+    $size   = array('B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+    $factor = (int)floor((strlen($bytes) - 1) / 3);
+    return round($bytes / pow(1024, $factor),2).$size[$factor];
+}
+
 //used percent
 echo round($spaceUsed/$maxBits * 100,2);
 echo "% of your limit ";
@@ -50,15 +57,9 @@ echo "% of your limit ";
 echo '<meter min="0" max="'.$maxBits.'" low="33" high="66" optimum="0" value="'.$spaceUsed.'">You don\'t support meter</meter><br>';
 
 //used bytes
-echo ($spaceUsed)."/".($maxBits);
-echo " bytes<br>";
+echo toReadableFilesize($spaceUsed)."/".toReadableFilesize($maxBits). " bytes<br>";
 
-//based off of Jeffrey Sambells
-function toReadableFilesize($bytes) {
-	$size   = array('B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
-	$factor = (int)floor((strlen($bytes) - 1) / 3);
-	return round($bytes / pow(1024, $factor),2).$size[$factor];
-}
+
 
 //main list uploaded files
 echo "Uploaded Files:<br>";

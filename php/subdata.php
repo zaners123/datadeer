@@ -35,7 +35,7 @@ function isUserSubscribed($username) {
 
 
 	//Your name could be here too if you make good code on this site (assuming you're reading this)
-	if ($username==="deer" || $username==="danielbacklund" || $username=="xlunah" || $username=="deerlover") return true;
+	if ($username==="yeehawitsjake" || $username==="deer" || $username==="danielbacklund" || $username=="xlunah") return true;
 
 	//find a subscription plan with their user ID
 	/*try {

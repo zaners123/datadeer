@@ -154,6 +154,21 @@ html, body {
     color: #29627e;
 }
 
+#overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    background-color: #00f;
+    height: 100px;
+}
+#overlayMessage {
+    font-size: 48px;
+    color: white;
+}
+
 .asideFull > ul {
     list-style-type: none;
 }

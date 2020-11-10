@@ -34,6 +34,15 @@ if (isset($_SESSION["username"])) {
 	<meta name="description" content="The site for all of your needs. Or at least most of them.">
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="/css/css.css"/>
+    <script async src="/alert.js"> </script>
+<?php
+$holiday = date('n/d');
+if ($holiday=='10/30'||$holiday=='10/31') {
+    echo '<link rel="stylesheet" type="text/css" href="/css/halloween.css"/>';
+} else if ($holiday=='12/24'||$holiday=='12/25') {
+    echo '<link rel="stylesheet" type="text/css" href="/css/christmas.css"/><script src="/js/snow.js"> </script>';
+}
+?>
 <?php
 if (isset($_SESSION["username"])) {
 	if (isset($doc["background"]) && $doc["background"] == "true") echo '<link rel="stylesheet" type="text/css" href="/css/pink.css"/>';
@@ -41,6 +50,4 @@ if (isset($_SESSION["username"])) {
 	if (isset($doc["sickness"]) && $doc["sickness"] == "true") echo '<link rel="stylesheet" type="text/css" href="/css/sickness.css"/>';
 	if (isset($doc["mouse"]) && $doc["mouse"] == "true") echo '<link rel="stylesheet" type="text/css" href="/css/mouse.css"/>';
 	if (isset($doc["randomback"]) && $doc["randomback"] == "true") echo "<style>body {background: rgb(".rand(175,255).",".rand(175,255).",".rand(175,255).");}</style>";
-//<script src="/js/snow.js"> </script>
-//<link rel="stylesheet" type="text/css" href="/css/christmas.css"/>
 }?>
