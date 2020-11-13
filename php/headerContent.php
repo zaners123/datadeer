@@ -24,7 +24,7 @@ if (isset($_SESSION["username"])) {
 }?>
 <!DOCTYPE html>
 <!--
- This website's code is on github and will accept good/fun forks. If you found this, you're a nerd and should help datadeer development. E-Mail "admin" @ this site if you want to apply your web development skills.
+ This website's code is on github at https://github.com/zaners123/datadeer and will accept good/fun forks. If you found this, you're a nerd and should help datadeer development. E-Mail "admin" @ this site if you want to apply your web development skills.
 -->
 <html lang="en">
 <head lang="en">
