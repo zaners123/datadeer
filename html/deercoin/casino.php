@@ -26,13 +26,13 @@ if (
 	echo "Press 'Flip' to flip";
 }?>
 <hr>
-<h2>Roll a 100-sided die for 10 coins. If it lands on 1, you get 1000 coins</h2>
+<h2>Roll a 100-sided die for 10 coins. If it lands on 100, you get 1000 coins</h2>
 <form method="post"><input type="submit" name="roll" value="Roll"></form>
 <?php
 if (
 	isset($_POST["roll"]) && $_POST["roll"]=="Roll" &&
 	transferCoins($conn, $_SESSION["username"], "dealer", 10,"Casino bet dice")) {
-	if (($roll = rand(1,100))==1) {
+	if (($roll = rand(1,100))==100) {
 		$winstate = transferCoins($conn, "dealer", $_SESSION["username"], 1010,"Casino won dice");
 		if (!$winstate) echo "ERROR DIE FELL OFF TABLE, CONTACT OP";
 		echo "<h1 class='rainbow'>WON 1000 coins</h1>";
@@ -46,7 +46,9 @@ if (
 }?>
 <hr>
 <h2>Flip a giant coin. If it lands heads, your money doubles! If it lands tails, your money goes to zero. May the odds be in your favor...</h2>
-<form method="post"><input type="submit" name="bigflip" value="BigFlip"></form>
+<form method="post">
+    <input type="submit" name="bigflip" value="BigFlip">
+</form>
 <?php
 $bet = getCoinsOfUser($conn, $_SESSION["username"]);
 if (
@@ -62,6 +64,7 @@ if (
 } else {
 	echo "Press 'BigFlip' to flip";
 }?>
+<hr>
 <script>
     document.getElementById("have").innerText = "You have <?=getCoinsOfUser($conn, $_SESSION["username"])?>	DeerCoins";
 </script>

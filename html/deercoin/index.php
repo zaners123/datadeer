@@ -59,7 +59,7 @@ You can get DeerCoin in many ways:
 	<?php
 	$board = getLeaderboard($conn);
 	while ($v = mysqli_fetch_assoc($board)) {
-		if ($v["u"]=="Dealer" || $v["u"]=="deer" || $v["u"]=="username") continue;
+		if ($v["u"]=="Dealer" || $v["u"]=="deer" || $v["u"]=="username" || $v["u"]=="bank") continue;
 		echo "<li>".$v["u"]." has ".$v["coins"]." DeerCoin</li>";
 	}
 	?>

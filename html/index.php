@@ -42,8 +42,12 @@ if (isset($_SESSION["username"])) {
 Can't find what you're looking for? Try the <a href="/directory">Directory</a>!
 <div style="width='100%'; text-align: center">
 <!--	<iframe src="https://www.cdc.gov/std/widgets/widget-2017-1.html" name="STDwidget 2017-1" id="STDwidget 2017-1" title="Widget for finding an STD testing site." frameborder="0" scrolling="no" height="250" width="250" marginheight="0" marginwidth="0" style="border: 1px solid #ccc; display:block;"> Find an STD testing site near you.</iframe>-->
-	<iframe src="https://www.dhs.gov/ntas/" name="National Terrorism Advisory System" title="National Terrorism Advisory System" width="220" height="220" scrolling="no" frameborder="0" seamless border="0"></iframe>
+<?php
+
+    if ($_SESSION["username"]=='danielbacklund')echo '<iframe src="https://www.dhs.gov/ntas/" name="National Terrorism Advisory System" title="National Terrorism Advisory System" width="220" height="220" scrolling="no" frameborder="0" seamless border="0"></iframe>
 	<iframe src="https://www2.fbi.gov/widgets/widget_missing.htm" width="220" height="220" frameborder="0"></iframe>
+    '
+    ?>
 </div>
 <?php require "../php/footer.php"; ?>
 <?php

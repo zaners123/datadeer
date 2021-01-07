@@ -21,6 +21,10 @@ union all
 ");
 }
 
+/**
+ * transfer coins between users
+ * @returns bool
+ */
 function transferCoins($conn,$userFrom,$userTo,$coins,$reason) {
 	//can't be same person
 	if ($userFrom == $userTo) return false;
