@@ -1,0 +1,14 @@
+<IfModule mod_negotiation.c>
+                <IfModule mod_include.c>
+                        <IfModule mod_alias.c>
+                                ErrorDocument 400 /err/?e=400
+                                ErrorDocument 401 /err/?e=401
+                                ErrorDocument 402 /err/?e=402
+                                ErrorDocument 403 /err/?e=403
+                                ErrorDocument 404 /err/?e=404
+                                ErrorDocument 500 /err/?e=500
+                                ErrorDocument 501 /err/?e=501
+                                ErrorDocument 503 /err/?e=503
+                </IfModule>
+        </IfModule>
+</IfModule>

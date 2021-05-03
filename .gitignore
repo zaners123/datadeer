@@ -26,10 +26,13 @@ leaflet*
 /html/whyareyoureadingthis
 /share
 /subonly
+/rocks/.env
 # not-code files
+*.unused.html
 *.app
 *.apk
 *.cur
+*.env
 *.exe
 *.gif
 *.hex

@@ -38,7 +38,10 @@ $data = http_build_query(array (
 	'secret' => parse_ini_file("/var/www/php/pass.ini")["recapcha"],
 	'response' => $_POST["g-recaptcha-response"]
 ));
-$verifyReCaptcha = file_get_contents("https://www.google.com/recaptcha/api/siteverify",false,stream_context_create(
+
+//google blocked datadeer for some reason
+
+/*$verifyReCaptcha = file_get_contents("https://www.google.com/recaptcha/api/siteverify",false,stream_context_create(
     array(
         'http' => array (
             'method' => 'POST',
@@ -50,7 +53,7 @@ $verifyReCaptcha = file_get_contents("https://www.google.com/recaptcha/api/sitev
 $verifyResult = json_decode($verifyReCaptcha);
 if ($verifyResult->success != true) {
     echo "Captcha Incorrect";return;
-}
+}*/
 
 //make account
 require_once "Service_Auth.php";

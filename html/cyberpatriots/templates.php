@@ -4,21 +4,38 @@
 		div{margin-bottom: 24px;}
 		section{margin-left: 32px;}
 	</style>
-<?php require "/var/www/bodyTop.php"; ?>
+<?php require "/var/www/php/bodyTop.php"; ?>
 	<div style="text-align: left">
 		<a style="display: block; text-align: left;font-size: 32px;" href=".">Back</a>
 		<div style="text-align: center">
 			<img src="export.png">
 		</div>
 		<h1 class="center">Automating Local Security Policy, Firewall, and Services.</h1>
-		<div>A <b>LOT</b> of menus on windows has an import/export button, which can also be used to import/export security options. Because of this, you dont need to know how to script, and you can accurately and easily configure settings for the Cyber Patriots round before it starts.</div>
-		<div>All of these methods involve "Exporting" which makes a file with all your settings. You can then save this, then "Import" it in the destination VM.</div>
 
-		<div><b>If any part of this is confusing</b>, Email the writer at <a href="mailto:admin@datadeer.net">admin@datadeer.net</a> and I will clarify, and update the page.</div>
+        <div class="center">
+            <h2>
+                <a href="speed.zip">Speed.zip - for experts</a>
+            </h2>
+        </div>
 
+		<div><b>If any part of this is confusing, or you notice things that it should have been getting</b>, Email the writer at <a href="mailto:admin@datadeer.net">admin@datadeer.net</a> and I will promptly update the page.</div>
+        <section style="float: left; display: block">
+            <hr class="hrBreak">
+            <h2 class="center" id="0">Chapter Zero: Importing for Dummies</h2>
+            <div>
+                Wanna get most of the points in the VM in like 1 minute? Yeah you do!
+                <ol>
+                    <li>(Do readme/forensic first or you'll probs heck it up)</li>
+                    <li>Download, extract, and open <a href="speed.zip">speed.zip</a></li>
+                    <li>Right-click "0import.bat" and click "Run as Administrator"</li>
+                </ol>
+                That's it! Also, 0import.bat is only 5 lines, and all it does is import the other files to your computer's settings
+            </div>
+        </section>
 		<section style="float:left; display: block">
 			<hr class="hrBreak">
 			<h1 class="center">Table Of Contents</h1>
+			<div>Chapter Zero: <a href="#0"><img src="templates.png">Importing for Dummies</a></div>
 			<div>Chapter One: <a href="#1"><img src="secpol.png">Local Security Policies Importing/Exporting</a></div>
 			<div>Chapter Two: <a href="#2"><img src="firewall-search.png">Firewall Importing/Exporting</a></div>
 			<div>Chapter Three: <a href="#3"><img src="services.png">Services Importing/Exporting</a></div>
@@ -31,9 +48,17 @@
 			<div>
 				<div style="float: left">
 					<img style="align-content: end" align="right" src="search.png" width="25%">
-					<div><b>Step One: Set your rules -</b> Open up Security Policy (Just search SecPol on your task bar, it's the grey box with the lock icon). Then, change rules so the computer becomes more secure.</div>
 
-					<div>
+                    <div>
+                        <b>Introduction - What's all this "Importing" business?</b>
+                    </div>
+
+                    <div>A <b>LOT</b> of menus on windows has an import/export button, which can also be used to import/export security options. Because of this, you dont need to know how to script, and you can accurately and easily configure settings for the Cyber Patriots round before it starts.</div>
+                    <div>All of these methods involve "Exporting" which makes a file with all your settings. You can then save this, then "Import" it in the destination VM.</div>
+
+                    <div><b>Step One: Set your rules -</b> Open up Security Policy (Just search SecPol on your task bar, it's the grey box with the lock icon). Then, change rules so the computer becomes more secure.</div>
+
+                    <div>
 						Some example settings you could set include:
 						<ul style="margin-left: 16px">
 							<li>"Account Policies > Password Policy > <b>Minimum password length</b>" to 14 characters (New passwords have to be long)</li>
