@@ -98,7 +98,7 @@ require "../php/headerNoSignin.php"; ?>
 	<form style="display: inline" action="/signup.php" method="POST">
 		<h3 style="display: inline"><input class="homein" type="submit" value="Make an Account"></h3>
 	</form><br>
-	<h4>Say hello and sign the <a href="/guestbook">Guestbook</a>!</h4>
+<!--	<h4>Say hello and sign the <a href="/guestbook">Guestbook</a>!</h4>-->
 	<!--<h4>Now with an endless <a href="/livestream/">livestream</a> of dog videos (enable autoplay).</h4>-->
 	<script>document.getElementById("submit").focus();</script>
 	<a href="other/termsofservice.html">Terms of Service</a>

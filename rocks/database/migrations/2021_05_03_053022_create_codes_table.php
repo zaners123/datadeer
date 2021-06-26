@@ -16,7 +16,7 @@ class CreateCodesTable extends Migration
         Schema::create('codes', function (Blueprint $table) {
             //Made by "php artisan make:migration create_codes_table"
             $table->id();
-            $table->string('name')->unique();
+            $table->string('handout_code')->unique();
             $table->string('general_location')->nullable();
             $table->double('longitude')->nullable();
             $table->double('latitude')->nullable();

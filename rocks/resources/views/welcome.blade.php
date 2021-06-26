@@ -14,15 +14,11 @@
             }
         </style>
         <title></title>
-
     </head>
     <body>
-
-        <div id="mapid">  </div>
+    <div id="mapid">  </div>
     <script>
         var map = L.map('mapid').setView([48, -110], 4);
-
-        //cause mapbox looks slightly prettier
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
             attribution: '',
             maxZoom: 10,
@@ -32,16 +28,14 @@
             zoomOffset: -1,
             accessToken: "{{env("MAPBOX_KEY")}}"
         }).addTo(map);
+        map.setMaxBounds(L.latLngBounds(L.latLng(-185, -185),L.latLng(185,185)))
         let markers = [];
-        <?php
-        foreach (App\Code::all() as $code) {
-            error_log($code);
-            if ($code->longitude != null && $code->latitude != null) {
-                echo "markers.push(L.marker([50,50],{title:''}).addTo(map));";
-            }
-        }
-        //    $x = new App\Code();
-        ?>
+        @foreach (App\Code::all() as $code)
+            {{--            @dd($code)--}}
+            @if ($code->longitude != null && $code->latitude != null)
+                {!! "markers.push(L.marker([".$code->longitude.",".$code->latitude."],{title:''}).addTo(map));"!!}
+            @endif
+        @endforeach
     </script>
     </body>
 </html>
