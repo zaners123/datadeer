@@ -1,7 +1,7 @@
 <?php
 
 require_once "/var/www/php/deercoinLib.php";
-require_once "/var/www/html/game/v2/lib.php";
+require_once "/var/www/html/game/v2/sprinklerLib.php";
 
 /**
  * Money Logic:

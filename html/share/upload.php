@@ -5,7 +5,7 @@
 	<h1>DataDeer Share Upload</h1>
 <?php require "aside.html"; ?>
 	<form enctype="multipart/form-data" method="post" action="submit.php">
-		<table align="center" style="border: 2px solid black">
+		<table align="center" class="useful_menu">
 			<tr>
 				<td>
 					<input name="userfile" type="file" required><br>

@@ -1,5 +1,5 @@
 <?php
-require_once "/var/www/html/game/v2/lib.php";
+require_once "/var/www/html/game/v2/sprinklerLib.php";
 
 class TicTacToeBoard extends GameBoard {
 

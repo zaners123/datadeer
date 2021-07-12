@@ -267,6 +267,7 @@ Formatting specific objects
 
 
 */
+
 .center {
     text-align: center;
 }
@@ -307,6 +308,10 @@ Formatting specific objects
 .deer {
     width: 50%;
     height: 50%;
+}
+
+.useful_menu {
+    border: 2px solid black
 }
 
 /*The settings switch*/
@@ -549,3 +554,6 @@ HEADER BAR VVVVV
 .black {
     color: #000;
 }
+.font32 {font-size:32px;}
+.align-left{text-align: left;}
+.align-right{text-align: right;}

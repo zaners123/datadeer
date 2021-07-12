@@ -55,7 +55,9 @@ function getDoc($folder,$loc = null,$default = null) {
 	return $response;
 }
 //main set any doc. The doc should be gotten first.
-function setDoc($folder,$loc,$doc) {
+function setDoc($folder,$loc = null,$doc = null) {
+
+    if ($loc==null) $loc=strtolower($_SESSION["username"]);
 
 	$loc = strtolower($loc);
 

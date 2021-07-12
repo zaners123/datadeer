@@ -1,7 +1,7 @@
 <?php
 
 //log file
-require "/var/www/php/lib.php";
+require "/var/www/php/sprinklerLib.php";
 securityLog("User Signing Out");
 
 //sign out

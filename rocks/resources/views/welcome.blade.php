@@ -32,8 +32,8 @@
         let markers = [];
         @foreach (App\Code::all() as $code)
             {{--            @dd($code)--}}
-            @if ($code->longitude != null && $code->latitude != null)
-                {!! "markers.push(L.marker([".$code->longitude.",".$code->latitude."],{title:''}).addTo(map));"!!}
+            @if ($id->longitude != null && $id->latitude != null)
+                {!! "markers.push(L.marker([".$id->longitude.",".$id->latitude."],{title:''}).addTo(map));"!!}
             @endif
         @endforeach
     </script>

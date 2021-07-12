@@ -1,6 +1,6 @@
 <?php
 
-require_once "/var/www/html/game/v2/lib.php";
+require_once "/var/www/html/game/v2/sprinklerLib.php";
 
 //standard competition sizes (changeable at any time)
 $boardSizes = [["10x10,6","Practice"],["8x8,10","Novice"],["16x16,42","Intermediate"],["30x16,99","Time Trial"],["30x30,200","Expert"],["100x100,1400","The Gauntlet"]];

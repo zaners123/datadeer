@@ -1,5 +1,5 @@
 <?php
-require "/var/www/php/lib.php";
+require "/var/www/php/sprinklerLib.php";
 function getPercentDog() {
 
 	if ($_FILES["userfile"]["size"] > 1024*1024*10) exit("FILE TOO BIG");
