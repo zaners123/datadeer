@@ -4,7 +4,7 @@ require "/var/www/php/requireSignIn.php";
 require "/var/www/php/couch.php";
 require_once "/var/www/php/subdata.php";
 
-require "/var/www/php/sprinklerLib.php";
+require "/var/www/php/lib.php";
 
 /**
 main input $_FILES["userfile"] for file data, extention, size

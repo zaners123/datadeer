@@ -1,5 +1,5 @@
 <?php
-require_once "/var/www/html/game/v2/sprinklerLib.php";
+require_once "/var/www/html/game/v2/lib.php";
 
 /**
 	Board format is {{"answer" board},{"hidden" board (same as answer board but got some zeroes)},{"client" board}}

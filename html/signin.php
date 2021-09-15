@@ -1,6 +1,6 @@
 <?php
 header("Location: /");
-require "/var/www/php/sprinklerLib.php";
+require "/var/www/php/lib.php";
 require_once "../php/Service_Auth.php";
 Service_Auth::sing()->authenticate(
 	$_POST["username"],

@@ -15,7 +15,7 @@ if (!isset($_GET["q"]) || !isset($_GET["n"])) {
 }
 
 //log download
-require "/var/www/php/sprinklerLib.php";
+require "/var/www/php/lib.php";
 securityLog("User downloading \"".$_GET["q"]."\"");
 
 //safely gets filename

@@ -5,7 +5,7 @@ $bottomTexts = [
 	"Making a website is hard",
 	"Now with <span style='color: #ff22ff'>pink</span> backgrounds!",
 	"Now with 14 CD drives",
-	"Would you like to play a game?",
+	"<a class='white' href='https://datadeer.net/game/v2/'>Would you like to play a game?</a>",
 	"DataDeer 2.0 - Now with 1.44\" floppy disks",
 	"Bug Fixes: Removed Herobrine",
 	"21 thousand employees",
@@ -19,18 +19,11 @@ $bottomTexts = [
 	"There's no place like ".$_SERVER['REMOTE_ADDR'],
 	"A bit of beauty",
 	"Now with two deers!",
-
 	"I came here to kick butt and say no more than eighteen words, and I'm all out of ",
-	"I came here to kick butt and say no more than eighteen words, and I'm all out of ",
-	"I came here to kick butt and say no more than eighteen words, and I'm all out of ",
-
 ];
 
 $disclaimers = [
 	"Do not drink and DataDeer",
-	"Do not drink and DataDeer",
-	"Do not drink and DataDeer",
-
 	"Do not add toner",
 	"Do not bend, fold, mutilate, or spindle",
 	"Do not drive or operate heavy machinery while using this product",
@@ -48,7 +41,6 @@ $disclaimers = [
 	"Harmful if swallowed",
 	"May cause excitability",
 	"This side up",
-	"This face up",
 ];
 $bottomText = $bottomTexts[array_rand($bottomTexts, 1)];
 $disclaimer = $disclaimers[array_rand($disclaimers, 1)];

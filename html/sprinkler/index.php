@@ -37,7 +37,8 @@
     }
     //save changes
     saveDevice($id,$doc);
-    var_dump($doc);
+    //For Debugging / testing :
+//    var_dump($doc);
     ?>
     <h1>Manage Sprinkler "<?=isset($doc["name"])?$doc["name"]:$id?>"</h1>
     <?php
@@ -52,6 +53,7 @@
         echo "<p style='background-color: #f00'>Device may be offline. Last message ".$timeSinceLastUpdate. " seconds ago. (".round($timeSinceLastUpdate/3600/24,2)." days ago)</p>";
     }
     ?>
+    <button onClick="window.location = window.location.href;">Refresh Page</button>
     <form class="align-left" method="post">
         <input type="hidden" name="forming" value="forming">
         <hr>
