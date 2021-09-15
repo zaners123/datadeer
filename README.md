@@ -5,6 +5,7 @@ This contains **all** of the website [DataDeer.net](https://datadeer.net), such 
  - Two-player Checkers
  - Private Messaging
  - A currency (DeerCoin)
+
 Except for:
 - media (images,shared content)
 - easter eggs (such as /secret)
@@ -40,7 +41,7 @@ Really just about any computer could work. It could be a spare Desktop PC. A lap
 
 ## Get a Linux server; anything Debian-based will work (such as Debian, Ubuntu, etc) 
 
-Then follow a guide on how to set up a [Debian](https://www.debian.org/distrib/) or [Ubuntu](https://ubuntu.com/tutorials/tutorial-install-ubuntu-server#1-overview) Serve
+Then follow a guide on how to set up a [Debian](https://www.debian.org/distrib/) or [Ubuntu](https://ubuntu.com/tutorials/tutorial-install-ubuntu-server#1-overview) Server
 
 Make sure you set the server up as headless (in Debian don't select any Desktop Managers), give it a static IP, and set up SSH keys (for remote access).
 
